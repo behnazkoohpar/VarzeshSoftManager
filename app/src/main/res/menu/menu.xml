@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu"
+    android:gravity="right"
+    android:layoutDirection="rtl"
+    android:layout_gravity="right">
+
+    <group
+        android:layout_gravity="right"
+        android:gravity="right">
+        <item
+            android:id="@+id/nav_member"
+            app:actionLayout="@layout/menu_member"
+            android:title="" />
+    </group>
+    <group
+        android:layout_gravity="right"
+        android:gravity="right">
+        <item
+            android:id="@+id/nav_kartable"
+            app:actionLayout="@layout/menu_kartable"
+            android:title="" />
+    </group>
+    <group
+        android:layout_gravity="right"
+        android:gravity="right">
+        <item
+            android:id="@+id/nav_conrtractors"
+            app:actionLayout="@layout/menu_contrctors"
+            android:title="" />
+    </group>
+    <group
+        android:layout_gravity="right"
+        android:gravity="right">
+        <item
+            android:id="@+id/nav_exit"
+            app:actionLayout="@layout/menu_exit"
+            android:title="" />
+
+    </group>
+</menu>

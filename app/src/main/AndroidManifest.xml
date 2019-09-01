@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.noor.payment">
+
+    <uses-sdk tools:overrideLibrary="android.support.test, android.app, android.support.test.rule, android.support.test.espresso, android.support.test.espresso.idling" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.fingerprint"
+        android:required="false" />
+
+    <application
+        android:name=".App"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <uses-library android:name="com.google.android.maps" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA02MtcseiCONgHCpvYK-OX7tnfACR40Ko" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="noor.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="5" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.noor.payment" />
+
+        <activity
+            android:name=".ui.bill.CameraTestActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/barcode"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.cardToCard.CardToCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.detailCardToCard.DetailCardToCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.charge.ChargeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.packetInternetAndCharge.PacketInternetAndChargeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.traveler.TravelerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.art.ArtActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.telecom.TelecommunicationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.manageCard.ManageCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.inventory.InventoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.receiptCardToCard.ReceiptCardToCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.packetInternet.PacketInternetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.customerClub.CustomerClubActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.creditCard.CreditCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.docContractors.DocContractorsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.docMember.DocMemberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.KartableManager.KartableManagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.signUp.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.facilitiesCard.FacilitiesCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.bill.BillActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.transaction.TransactionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.receiptBalance.ReceiptBalanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.detailBill.DetailBillActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.fiveTransactions.FiveTransactionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.parkingCar.parking.ParkingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.addCar.AddCarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.parkingCar.listCar.ListCarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.parkingCar.listReserve.ListReserveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.parkingCar.selectParking.SelectParkingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.parkingCar.searchAddressParking.SearchAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.condications.CondicationsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.parkingCar.payParking.PayParkingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.followTransactions.FollowTransactionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.receiptBill.ReceiptBillActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.changeCash.ChangeCashActivity" />
+        <activity android:name=".ui.payByCode.PayByCodeActivity" />
+        <activity android:name=".ui.showDetailMerchant.ShowDetailMerchantActivity"></activity>
+    </application>
+
+</manifest>

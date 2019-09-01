@@ -1,0 +1,215 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.EditTextWhiteRegisterPlaque" >
+        <!-- Customize your theme here. -->
+        <item name="android:background">@drawable/bg_edit_text_white</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="CustomProgressBarHorizontal" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress</item>
+        <item name="android:minHeight">50dip</item>
+        <item name="android:maxHeight">50dip</item>
+    </style>
+
+    <style name="AppTheme.ButtonPrimary" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/bg_btn_color_primary</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/padding_small</item>
+    </style>
+
+    <style name="AppTheme.ButtonAccent" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/padding_small</item>
+    </style>
+
+    <style name="AppTheme.ButtonWhite" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/bg_btn_white</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:padding">@dimen/padding_small</item>
+    </style>
+
+    <style name="AppTheme.ButtonBlue" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/bg_btn_green</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/padding_small</item>
+    </style>
+
+    <style name="AppTheme.TextViewTitle">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_normal</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:padding">@dimen/padding_common</item>
+    </style>
+
+    <style name="AppTheme.TextViewDetail">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_normal</item>
+        <item name="android:textColor">@color/black_effective</item>
+        <item name="android:padding">@dimen/padding_mini_mini_small</item>
+    </style>
+
+    <style name="AppTheme.TextViewDetailLarge">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
+        <item name="android:textColor">@color/black_effective</item>
+        <item name="android:padding">@dimen/padding_mini_mini_small</item>
+    </style>
+
+    <style name="AppTheme.TextViewWhite">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/black_effective</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="AppTheme.TextViewTitleBlue">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/blue_full</item>
+        <item name="android:padding">@dimen/padding_common</item>
+    </style>
+
+    <style name="AppTheme.EditTextWhiteSearch">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@drawable/bg_edit_text_white_search</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="AppTheme.TextViewTitleMain">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.TextViewTitr">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/black_effective</item>
+        <item name="android:padding">@dimen/padding_common</item>
+    </style>
+
+    <style name="AppTheme.TextViewTitrWhite">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/padding_common</item>
+    </style>
+
+    <style name="AppTheme.TextViewLableGray">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/gray_800</item>
+        <item name="android:padding">@dimen/padding_small</item>
+    </style>
+
+    <style name="AppTheme.TextWhiteRegister">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/black_effective</item>
+        <item name="android:padding">@dimen/padding_common</item>
+    </style>
+
+    <style name="AppTheme.MainButton">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@drawable/bg_main_btn</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/padding_common</item>
+    </style>
+
+    <style name="AppTheme.EditTextWhiteRegisterList">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@drawable/bg_edit_text_white</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="AppTheme.EditTextWhite">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@drawable/bg_edit_text_white</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="AppTheme.EditTextWhiteBank">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@drawable/bg_edit_text_white_bank</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_normal</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="AppTheme.EditTextBlue">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@drawable/bg_edit_text_primary</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="AppTheme.font">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_normal</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+    <style name="NumberPickerText">
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="AppTheme.MenuText">
+        <!-- Customize your theme here. -->
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--<style name="TextLabel" parent="TextAppearance.AppCompat">-->
+        <!--&lt;!&ndash; Hint color and label color in FALSE state &ndash;&gt;-->
+        <!--<item name="android:textColorHint">@color/gray_900</item>-->
+        <!--<item name="android:textSize">20sp</item>-->
+        <!--&lt;!&ndash; Label color in TRUE state and bar color FALSE and TRUE State &ndash;&gt;-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--<item name="colorControlNormal">@color/pink_600</item>-->
+        <!--<item name="colorControlActivated">@color/mdtp_red</item>-->
+    <!--</style>-->
+</resources>

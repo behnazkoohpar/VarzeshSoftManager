@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dark_gray">#909090</color>
+    <color name="black_effective">#363636</color>
+    <color name="gray">#a9a9a9</color>
+    <color name="path_color">#00c168</color>
+    <color name="colorPrimary">#7b09cc</color>
+    <color name="colorPrimaryLight">#8A2DCC</color>
+    <color name="colorPrimaryHelp">#e7ebed</color>
+    <color name="colorPrimaryDark">#5F069E</color>
+    <color name="colorAccent">#0a0a0a</color>
+    <color name="colorNavigataion">#00658b</color>
+    <color name="statusBar">#00658b</color>
+    <color name="background">#ffffff</color>
+    <color name="backgroundPage">#ecebe7</color>
+    <color name="backgroundPageLogin">#dcdcdc</color>
+    <color name="backPicture">#ffcccc</color>
+    <color name="divider">#b1b1b1</color>
+    <color name="pink_600">#e40046</color>
+    <color name="pink_613">#ff5937</color>
+    <color name="blue">#014f9a</color>
+    <color name="blue_low">#72cccd</color>
+    <color name="blue_full">#01385e</color>
+    <color name="brown">#660f00</color>
+    <color name="brown_600">#cc5526</color>
+    <color name="priple">#7b09cc</color>
+    <color name="green">#078600</color>
+    <color name="green_active">#0CEA5A</color>
+    <color name="red_expired">#EA0C0C</color>
+
+    <color name="orange_100" >#fcf4e6</color>
+    <color name="orange_200" >#fdedd1</color>
+    <color name="orange_300" >#fddba3</color>
+    <color name="orange_400" >#fad08b</color>
+    <color name="orange_500" >#f9c675</color>
+    <color name="orange_600" >#fabd5c</color>
+    <color name="orange_700" >#fbb747</color>
+    <color name="orange_800" >#f9ab2e</color>
+    <color name="orange_900" >#faa519</color>
+
+    <color name="green_100" >#e6f3f2</color>
+    <color name="green_200" >#d1ebe9</color>
+    <color name="green_300" >#b8dfdc</color>
+    <color name="green_400" >#8acbd6</color>
+    <color name="green_500" >#5cb8b0</color>
+    <color name="green_600" >#47afa7</color>
+    <color name="green_700" >#2ea399</color>
+    <color name="green_800" >#199c90</color>
+
+    <color name="gray_50" >#f4f4f4</color>
+    <color name="gray_100" >#e9e9e9</color>
+    <color name="gray_200" >#d8d8d8</color>
+    <color name="gray_300" >#c2c2c2</color>
+    <color name="gray_400" >#afafb1</color>
+    <color name="gray_500" >#9a9a9b</color>
+    <color name="gray_600" >#878787</color>
+    <color name="gray_700" >#737375</color>
+    <color name="gray_800" >#5f5f62</color>
+    <color name="gray_900" >#4B4B4E</color>
+    <color name="gray_1000" >#3a3a3b</color>
+
+    <color name="white" >#ffffff</color>
+    <color name="white_transparent" >#bbffffff</color>
+
+</resources>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_alert"
+    android:orientation="vertical">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
+    <RelativeLayout
+        android:id="@+id/btn_alert_ok"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_white">
+
+        <TextView
+            android:id="@+id/tv_alert_title"
+            style="@style/AppTheme.TextViewLableGray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@string/enter_password_cvv"
+            android:layout_below="@+id/img"
+            android:textAlignment="center" />
+
+
+        <LinearLayout
+            android:id="@+id/passwordd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/tv_alert_title"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textLayoutPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_mini_small"
+                android:hint="@string/second_password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:counterEnabled="false"
+                app:counterMaxLength="11"
+                app:errorEnabled="false"
+                app:helperTextEnabled="true">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/password"
+                    style="@style/AppTheme.TextViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:inputType="numberPassword"
+                    android:maxLength="11"
+                    android:textAlignment="center" />
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cvvL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/passwordd"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textLayoutCvv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_mini_small"
+                android:hint="@string/cvv2"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:counterEnabled="false"
+                app:counterMaxLength="4"
+                app:errorEnabled="false"
+                app:helperTextEnabled="true">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/cvv"
+                    style="@style/AppTheme.TextViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:inputType="numberPassword"
+                    android:maxLength="4"
+                    android:textAlignment="center" />
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnOk"
+            style="@style/AppTheme.ButtonAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cvvL"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/ok" />
+    </RelativeLayout>
+</ScrollView>
+</LinearLayout>
