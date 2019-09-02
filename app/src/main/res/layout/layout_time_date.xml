@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/titr"
+        layout="@layout/titr" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_mini_mini_small"
+            android:background="@drawable/bg_btn_gray"
+            android:padding="@dimen/padding_common">
+
+            <TextView
+                style="@style/AppTheme.TextViewDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:text="@string/show_roozane" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/roozane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_mini_mini_small"
+            android:background="@drawable/bg_btn_gray"
+            android:padding="@dimen/padding_common">
+
+            <TextView
+                style="@style/AppTheme.TextViewDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:text="@string/show_haftegi" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/haftegi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_mini_mini_small"
+            android:background="@drawable/bg_btn_gray"
+            android:padding="@dimen/padding_common">
+
+            <TextView
+                style="@style/AppTheme.TextViewDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:text="@string/show_mahane" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/mahane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_mini_mini_small"
+            android:background="@drawable/bg_btn_gray"
+            android:padding="@dimen/padding_common">
+
+            <TextView
+                style="@style/AppTheme.TextViewDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:text="@string/show_salane" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/salane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

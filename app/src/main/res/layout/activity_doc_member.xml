@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:Context="com.noor.payment.ui.docMember.DocMemberActivity">
+    tools:Context="com.eram.manager.ui.docMember.DocMemberActivity">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.noor.payment.ui.docMember.DocMemberViewModel" />
+            type="com.eram.manager.ui.docMember.DocMemberViewModel" />
     </data>
 
     <LinearLayout

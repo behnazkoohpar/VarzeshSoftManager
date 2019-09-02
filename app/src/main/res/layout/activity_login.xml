@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/backgroundPage"
-    tools:Context="com.noor.payment.ui.login.LoginActivity">
+    tools:Context="com.eram.manager.ui.login.LoginActivity">
 
     <data>
 
@@ -11,10 +11,10 @@
 
         <variable
             name="viewModel"
-            type="com.noor.payment.ui.login.LoginViewModel" />
+            type="com.eram.manager.ui.login.LoginViewModel" />
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            tools:context="com.noor.payment.activities.LoginActivity">
+            tools:context="com.eram.manager.activities.LoginActivity">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -119,12 +119,13 @@
                         <com.github.aakira.expandablelayout.ExpandableRelativeLayout
                             android:id="@+id/expandableLayoutState"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="250dp"
                             android:layout_below="@+id/stateLinear"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="40dp"
                             app:ael_duration="400"
                             app:ael_expanded="false"
+                            android:layout_centerHorizontal="true"
                             app:ael_interpolator="accelerate"
                             app:ael_orientation="vertical">
 
@@ -133,6 +134,7 @@
                                 android:layout_height="match_parent"
                                 android:background="#ffffff"
                                 android:elevation="2dp"
+                                android:layout_centerHorizontal="true"
                                 android:orientation="horizontal">
 
                                 <ListView
@@ -141,6 +143,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="10dp"
                                     android:choiceMode="singleChoice"
+                                    android:layout_centerHorizontal="true"
                                     android:divider="#FF0033"
                                     android:dividerHeight="1dp"
                                     android:headerDividersEnabled="true"
@@ -150,7 +153,7 @@
 
                     </RelativeLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textLayoutUserName"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -165,18 +168,18 @@
                         app:errorEnabled="false"
                         app:helperTextEnabled="true">
 
-                        <android.support.design.widget.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/userName"
                             style="@style/AppTheme.TextViewTitle"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:imeOptions="actionNext"
-                            android:inputType="number"
+                            android:inputType="text"
                             android:maxLength="11"
                             android:textAlignment="center" />
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textLayoutPassword"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -191,7 +194,7 @@
                         app:errorEnabled="false"
                         app:helperTextEnabled="false">
 
-                        <android.support.design.widget.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/password"
                             style="@style/AppTheme.TextViewTitle"
                             android:layout_width="match_parent"
@@ -201,7 +204,7 @@
                             android:inputType="textPassword"
                             android:maxLength="12"
                             android:textAlignment="center" />
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -220,5 +223,5 @@
 
         </RelativeLayout>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

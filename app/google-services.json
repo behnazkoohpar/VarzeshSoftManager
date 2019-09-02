@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:399689967722:android:c9edb7e0204115ba",
         "android_client_info": {
-          "package_name": "com.noor.payment"
+          "package_name": "com.eram.manager"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "399689967722-8ruduchcjv7cni9mks2hto142qtcchvs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.noor.payment",
+            "package_name": "com.eram.manager",
             "certificate_hash": "355f55d64a461b6b8fe82c2df95f629da4c9ad47"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "399689967722-qlrk5dskgah62m2std1k6pbiancl9cr3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.noor.payment",
+            "package_name": "com.eram.manager",
             "certificate_hash": "ae1d58527f8414d3f81841af791f425b3ec9d3d5"
           }
         },

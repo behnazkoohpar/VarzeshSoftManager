@@ -60,6 +60,7 @@
     <color name="gray_1000" >#3a3a3b</color>
 
     <color name="white" >#ffffff</color>
-    <color name="white_transparent" >#bbffffff</color>
+    <color name="white_transparent" >#99ffffff</color>
+    <color name="priple_transparent" >#997b09cc</color>
 
 </resources>

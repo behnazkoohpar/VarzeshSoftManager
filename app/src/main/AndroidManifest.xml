@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.noor.payment">
+    package="com.eram.manager">
 
     <uses-sdk tools:overrideLibrary="android.support.test, android.app, android.support.test.rule, android.support.test.espresso, android.support.test.espresso.idling" />
 
@@ -28,6 +28,9 @@
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.functionalReport.FunctionalReportActivity"></activity>
+        <activity android:name=".ui.reportRecived.ReportRecivedActivity" />
+        <activity android:name=".ui.stateReception.StateReceptionActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait">
@@ -57,7 +60,7 @@
             android:value="true" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="com.noor.payment" />
+            android:value="com.eram.manager" />
 
         <activity
             android:name=".ui.bill.CameraTestActivity"
@@ -176,7 +179,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.changeCash.ChangeCashActivity" />
         <activity android:name=".ui.payByCode.PayByCodeActivity" />
-        <activity android:name=".ui.showDetailMerchant.ShowDetailMerchantActivity"></activity>
+        <activity android:name=".ui.showDetailMerchant.ShowDetailMerchantActivity" />
     </application>
 
 </manifest>

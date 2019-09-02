@@ -20,8 +20,9 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
+            android:tint="@color/colorPrimaryDark"
             android:layout_centerVertical="true"
-            android:src="@drawable/about_me" />
+            android:src="@drawable/customer_club_menu" />
 
         <TextView
             style="@style/AppTheme.font"

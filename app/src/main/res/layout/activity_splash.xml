@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.noor.payment.ui.splash.SplashViewModel" />
+            type="com.eram.manager.ui.splash.SplashViewModel" />
 
     </data>
 

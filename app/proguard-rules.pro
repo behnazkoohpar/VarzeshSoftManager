@@ -3,7 +3,7 @@
 -dontwarn retrofit2.Platform$Java8
 -dontwarn com.google.errorprone.annotations.*
 
--keep public class com.noor.payment.data.model.** { *;}
+-keep public class com.eram.manager.data.model.** { *;}
 -dontwarn junit.textui.*
 -dontnote org.apache.commons.codec.**
 -dontwarn org.conscrypt.*

@@ -17,13 +17,13 @@
     <string name="btn_ok">باشه</string>
     <string name="tel_mobile_number">شماره تلفن همراه</string>
     <string name="validation_phonenumber_or_email">شماره تلفن خود را وارد کنید</string>
-    <string name="validation_phonenumber">شماره تلفن اشتباه است</string>
+    <string name="validation_phonenumber">نام کاربری را وارد کنید</string>
     <string name="validation_password">لطفا رمز عبور را وارد کنید</string>
     <string name="validation_re_password_length">برای تکرار رمز عبور حداقل 6 کاراکتر وارد نمائید</string>
     <string name="validation_re_password">لطفا تکرار رمز عبور را وارد نمائید</string>
     <string name="validation_two_password">رمز عبور و تکرار آن با هم یکسان نیست</string>
     <string name="change_password_ok">تغییر رمز عبور با موفقیت انجام شد</string>
-    <string name="user_name">شماره تلفن همراه</string>
+    <string name="user_name">نام کاربری</string>
     <string name="password_user">رمز عبور</string>
     <string name="text_attention">توجه</string>
     <string name="ok">تائید</string>
@@ -36,7 +36,7 @@
     <string name="software_updating">به روز رسانی نرم افزار</string>
     <string name="lost_internet">به اینترنت متصل نیستید</string>
     <string name="data_incorrect">داده ورودی صحیح نیست</string>
-    <string name="validation_password_length">برای رمز عبور حداقل 6 کاراکتر وارد نمائید</string>
+    <string name="validation_password_length">رمز عبور را وارد نمایید</string>
     <string name="not_can_call">امکان فراخوانی متد وجود ندارد</string>
     <string name="problem">مشکلی رخ داده است</string>
     <string name="forget_password_title">فراموشی رمز عبور</string>
@@ -341,5 +341,14 @@
     <string name="docContractors">پرونده پیمانکاران</string>
     <string name="docMemberss">پرونده اعضا</string>
     <string name="kartable">کارتابل مدیران</string>
+    <string name="reportStateReception">گزارش وضعیت پذیرش</string>
+    <string name="txt_organ">واحد سازمانی</string>
+    <string name="txt_time_date">محدوده زمانی گزارش</string>
+    <string name="show_roozane">به صورت روزانه تهیه شود</string>
+    <string name="show_haftegi">به صورت هفتگی تهیه شود</string>
+    <string name="show_mahane">به صورت ماهانه تهیه شود</string>
+    <string name="show_salane">به صورت سالانه تهیه شود</string>
+    <string name="reportRecived">گزارش دریافتی</string>
+    <string name="functionalReport">گزارش عملکرد</string>
 
 </resources>
