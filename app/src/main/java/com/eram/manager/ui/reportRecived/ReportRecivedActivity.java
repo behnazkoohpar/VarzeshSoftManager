@@ -15,12 +15,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.eram.manager.BR;
 import com.eram.manager.R;
+import com.eram.manager.data.model.api.DebtorAmount;
 import com.eram.manager.data.model.api.OrganizationUnit;
+import com.eram.manager.data.model.api.SumPrice;
 import com.eram.manager.databinding.ActivityReportRecivedBinding;
 import com.eram.manager.ui.base.BaseActivity;
 import com.eram.manager.ui.stateReception.OrganListAdapter;
 import com.eram.manager.utils.AppConstants;
 import com.eram.manager.utils.CommonUtils;
+import com.eram.manager.utils.NumberFormatter;
+import com.eram.manager.utils.fdate.DateUtil;
+import com.ibm.icu.text.DateFormat;
+import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
+
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -33,8 +41,9 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     private RecyclerView recyclerView1;
     private LinearLayoutManager layoutManager1;
     private OrganListAdapter mAdapter;
-    private OrganizationUnit.Result organSelected;
-    private String timeDateSelected = "";
+    private String organSelected = "";
+    private String timeDateSelected = "1";
+    private OrganizationUnit organizationUnit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,19 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
             mActivityReportRecivedBinding = getViewDataBinding();
             mReportRecivedViewModel.setNavigator(this);
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+            PersianCalendar persianCalendar = new PersianCalendar();
+            int month = persianCalendar.getPersianMonth();
+            int day = persianCalendar.getPersianDay();
+            String monthh = String.valueOf(month);
+            String dayy = String.valueOf(day);
+            month = month + 1;
+            if (month < 10)
+                monthh = "0" + month;
+            if (day < 10)
+                dayy = "0" + dayy;
+            mActivityReportRecivedBinding.date.setText(persianCalendar.getPersianYear() + "/" + monthh + "/" + dayy);
+            callOrganizationUnit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,7 +91,7 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
 
     @Override
     public void showOrganization() {
-        callOrganizationUnit();
+        showSortDialog();
     }
 
     private void callOrganizationUnit() {
@@ -86,17 +108,18 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     private void receivedOrganizationUnit(OrganizationUnit organizationUnit) {
         try {
             if (organizationUnit.isStatus()) {
-                showSortDialog(organizationUnit);
+                this.organizationUnit = organizationUnit;
+                this.organizationUnit.getResult().add(organizationUnit.getResult().size(), new OrganizationUnit.Result("", "همه"));
+                callGetDebtorAmountToday();
+                callGetSumPriceReceipt();
             }
-
-
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
         }
     }
 
-    private void showSortDialog(OrganizationUnit organizationUnit) {
+    private void showSortDialog() {
         final Dialog dialogSort = new Dialog(ReportRecivedActivity.this);
         dialogSort.setContentView(R.layout.layout_organ);
 
@@ -120,8 +143,8 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
             @Override
             public void onClick(final int position, String title, String id) {
                 dialogSort.dismiss();
-                organSelected = organizationUnit.getResult().get(position);
-                mActivityReportRecivedBinding.organization.setText(organSelected.getName());
+                organSelected = organizationUnit.getResult().get(position).getID();
+                mActivityReportRecivedBinding.organization.setText(organizationUnit.getResult().get(position).getName());
             }
         });
     }
@@ -181,6 +204,8 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 //roozane
                 timeDateSelected = "1";
                 mActivityReportRecivedBinding.time.setText("روزانه");
+                callGetDebtorAmountToday();
+                dialogTime.dismiss();
             }
         });
         haftegi.setOnClickListener(new View.OnClickListener() {
@@ -192,6 +217,8 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 //haftegi
                 timeDateSelected = "2";
                 mActivityReportRecivedBinding.time.setText("هفتگی");
+                callGetDebtorAmountLimit();
+                dialogTime.dismiss();
             }
         });
         mahane.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +230,8 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 //mahane
                 timeDateSelected = "3";
                 mActivityReportRecivedBinding.time.setText("ماهانه");
+                callGetDebtorAmountLimit();
+                dialogTime.dismiss();
             }
         });
         salane.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +243,154 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 //salane
                 timeDateSelected = "4";
                 mActivityReportRecivedBinding.time.setText("سالانه");
+                callGetDebtorAmountLimit();
+                dialogTime.dismiss();
             }
         });
+    }
+
+    @Override
+    public void rightClick() {
+        if (timeDateSelected.equalsIgnoreCase("1")) {
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneDayNext(mActivityReportRecivedBinding.date.getText().toString()));
+            callGetDebtorAmountToday();
+        } else if (timeDateSelected.equalsIgnoreCase("2")) {
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneWeekNext(mActivityReportRecivedBinding.date.getText().toString()));
+            callGetDebtorAmountLimit();
+        } else if (timeDateSelected.equalsIgnoreCase("3")) {
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneMonthNext(mActivityReportRecivedBinding.date.getText().toString()));
+            callGetDebtorAmountLimit();
+        } else if (timeDateSelected.equalsIgnoreCase("4")) {
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneYearNext(mActivityReportRecivedBinding.date.getText().toString()));
+            callGetDebtorAmountLimit();
+        }
+    }
+
+    @Override
+    public void leftClick() {
+        if (timeDateSelected.equalsIgnoreCase("1")) {
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneDayBefor(mActivityReportRecivedBinding.date.getText().toString()));
+            callGetDebtorAmountToday();
+        } else if (timeDateSelected.equalsIgnoreCase("2")) {
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneWeekBefor(mActivityReportRecivedBinding.date.getText().toString()));
+            callGetDebtorAmountLimit();
+        } else if (timeDateSelected.equalsIgnoreCase("3")) {
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneMonthBefor(mActivityReportRecivedBinding.date.getText().toString()));
+            callGetDebtorAmountLimit();
+        } else if (timeDateSelected.equalsIgnoreCase("4")) {
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneYearBefor(mActivityReportRecivedBinding.date.getText().toString()));
+            callGetDebtorAmountLimit();
+        }
+    }
+
+    private void callGetDebtorAmountToday() {
+        try {
+            mReportRecivedViewModel.callGetDebtorAmountToday(organSelected);
+            mReportRecivedViewModel.getDebtorAmountTodayResponseModelMutableLiveData().observe(this, this::receivedGetDebtorAmountToday);
+
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    private void receivedGetDebtorAmountToday(DebtorAmount debtorAmount) {
+
+    }
+
+    private void callGetDebtorAmountLimit() {
+        try {
+            String fromdate = "", todate = "";
+            if (timeDateSelected.equalsIgnoreCase("1")) {
+                todate = DateUtil.OneDayNext(mActivityReportRecivedBinding.date.getText().toString());
+                fromdate = mActivityReportRecivedBinding.date.getText().toString();
+            }
+            if (timeDateSelected.equalsIgnoreCase("2")) {
+                todate = DateUtil.OneWeekNext(mActivityReportRecivedBinding.date.getText().toString());
+                fromdate = mActivityReportRecivedBinding.date.getText().toString();
+            }
+            if (timeDateSelected.equalsIgnoreCase("3")) {
+                todate = DateUtil.OneMonthNext(mActivityReportRecivedBinding.date.getText().toString());
+                fromdate = mActivityReportRecivedBinding.date.getText().toString();
+            }
+            if (timeDateSelected.equalsIgnoreCase("4")) {
+                todate = DateUtil.OneYearNext(mActivityReportRecivedBinding.date.getText().toString());
+                fromdate = mActivityReportRecivedBinding.date.getText().toString();
+            }
+
+            mReportRecivedViewModel.callGetDebtorAmountLimit(fromdate, todate, organSelected);
+            mReportRecivedViewModel.getDebtorAmountLimitResponseModelMutableLiveData().observe(this, this::receivedGetDebtorAmountLimit);
+
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    private void receivedGetDebtorAmountLimit(DebtorAmount debtorAmount) {
+
+    }
+
+    private void callGetSumPriceReceipt() {
+        try {
+            String fromdate = "", todate = "";
+            if (timeDateSelected.equalsIgnoreCase("1")) {
+                String dateMiladi = DateUtil.changeFarsiToMiladi(mActivityReportRecivedBinding.date.getText().toString());
+                String dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
+                String dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
+                String dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
+                todate = dateYear + "/" + dateMonth + "/" + dateDay;
+
+                fromdate = dateYear + "/" + dateMonth + "/" + dateDay;
+            }
+            if (timeDateSelected.equalsIgnoreCase("2")) {
+                String dateMiladi = DateUtil.changeFarsiToMiladi(mActivityReportRecivedBinding.date.getText().toString());
+                String dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
+                String dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
+                String dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
+                todate = dateYear + "/" + dateMonth + "/" + dateDay;
+                dateMiladi = DateUtil.changeFarsiToMiladi(DateUtil.OneWeekBefor(mActivityReportRecivedBinding.date.getText().toString()));
+                dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
+                dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
+                dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
+                fromdate = dateYear + "/" + dateMonth + "/" + dateDay;
+            }
+            if (timeDateSelected.equalsIgnoreCase("3")) {
+                String dateMiladi = DateUtil.changeFarsiToMiladi(mActivityReportRecivedBinding.date.getText().toString());
+                String dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
+                String dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
+                String dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
+                todate = dateYear + "/" + dateMonth + "/" + dateDay;
+                dateMiladi = DateUtil.changeFarsiToMiladi(DateUtil.OneMonthBefor(mActivityReportRecivedBinding.date.getText().toString()));
+                dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
+                dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
+                dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
+                fromdate = dateYear + "/" + dateMonth + "/" + dateDay;
+            }
+            if (timeDateSelected.equalsIgnoreCase("4")) {
+                String dateMiladi = DateUtil.changeFarsiToMiladi(mActivityReportRecivedBinding.date.getText().toString());
+                String dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
+                String dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
+                String dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
+                todate = dateYear + "/" + dateMonth + "/" + dateDay;
+                dateMiladi = DateUtil.changeFarsiToMiladi(DateUtil.OneYearBefor(mActivityReportRecivedBinding.date.getText().toString()));
+                dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
+                dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
+                dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
+                fromdate = dateYear + "/" + dateMonth + "/" + dateDay;
+            }
+
+            mReportRecivedViewModel.callGetSumPriceReceipt(fromdate, todate, organSelected);
+            mReportRecivedViewModel.getSumPriceReceiptResponseModelMutableLiveData().observe(this, this::receivedSumPriceReciept);
+
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    private void receivedSumPriceReciept(SumPrice sumPrice) {
+        if (sumPrice.isStatus())
+            mActivityReportRecivedBinding.sum.setText(sumPrice.getSumTotalAmount());
     }
 }

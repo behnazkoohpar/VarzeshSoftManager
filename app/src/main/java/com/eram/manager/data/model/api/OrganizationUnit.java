@@ -31,11 +31,16 @@ public class OrganizationUnit {
         Result = result;
     }
 
-    public class Result{
+    public static class Result{
     private String ID;
     private String Name;
 
-    public String getID() {
+        public Result(String ID, String name) {
+            this.ID = ID;
+            Name = name;
+        }
+
+        public String getID() {
         return ID;
     }
 

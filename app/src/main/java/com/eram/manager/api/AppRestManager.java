@@ -1,14 +1,19 @@
 package com.eram.manager.api;
 
 import com.eram.manager.data.model.api.AllReport;
+import com.eram.manager.data.model.api.DebtorAmount;
 import com.eram.manager.data.model.api.OrganizationUnit;
-import com.eram.manager.data.model.api.base.BaseResponse;
+import com.eram.manager.data.model.api.PoolReception;
+import com.eram.manager.data.model.api.PoolReceptionLimit;
+import com.eram.manager.data.model.api.PoolReceptionStatus;
 import com.eram.manager.data.model.api.ServerGym;
+import com.eram.manager.data.model.api.SumPrice;
 import com.eram.manager.data.model.api.TokenResponse;
 import com.eram.manager.data.model.api.base.Data;
 import com.eram.manager.ui.login.LoginRequestBody;
-
-import java.util.List;
+import com.eram.manager.ui.stateReception.PoolReceptionDayRequestBody;
+import com.eram.manager.ui.stateReception.PoolReceptionLimitRequestBody;
+import com.eram.manager.ui.stateReception.PoolReceptionStatusRequestBody;
 
 import javax.inject.Inject;
 
@@ -44,5 +49,35 @@ public class AppRestManager implements RestManager {
     @Override
     public Observable<OrganizationUnit> getOrganizatonUnit(String baseUrl) {
         return iCallApi.getOrganizatonUnit(baseUrl);
+    }
+
+    @Override
+    public Observable<PoolReception> getPoolReceptionDay(String baseUrl, PoolReceptionDayRequestBody poolReceptionDayRequestBody) {
+        return iCallApi.getPoolReceptionDay(baseUrl,poolReceptionDayRequestBody);
+    }
+
+    @Override
+    public Observable<PoolReceptionLimit> getPoolReceptionLimit(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody) {
+        return iCallApi.getPoolReceptionLimit(baseUrl,poolReceptionLimitRequestBody);
+    }
+
+    @Override
+    public Observable<PoolReceptionStatus> getPoolReceptionStatus(String baseUrl, PoolReceptionStatusRequestBody poolReceptionStatusRequestBody) {
+        return iCallApi.getPoolReceptionStatus(baseUrl,poolReceptionStatusRequestBody);
+    }
+
+    @Override
+    public Observable<DebtorAmount> getDebtorAmountToday(String baseUrl, PoolReceptionStatusRequestBody poolReceptionStatusRequestBody) {
+        return iCallApi.getDebtorAmountToday(baseUrl,poolReceptionStatusRequestBody);
+    }
+
+    @Override
+    public Observable<DebtorAmount> getDebtorAmountLimit(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody) {
+        return iCallApi.getDebtorAmountLimit(baseUrl,poolReceptionLimitRequestBody);
+    }
+
+    @Override
+    public Observable<SumPrice> getSumPriceReciept(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody) {
+        return iCallApi.getSumPriceReciept(baseUrl,poolReceptionLimitRequestBody);
     }
 }

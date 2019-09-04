@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txt2"
                         android:layout_alignParentRight="true"
-                        android:text="امروز"
+                        android:text="روزانه"
                         android:textColor="@color/white" />
                 </RelativeLayout>
 
@@ -169,6 +169,9 @@
 
             <TextView
                 android:id="@+id/date"
+                style="@style/AppTheme.TextViewDetail"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true" />
@@ -367,7 +370,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/margin_small"
                         android:text="ماهانه"
                         android:textColor="@color/white" />
                 </RelativeLayout>
@@ -385,7 +387,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/margin_small"
                         android:text="هفتگی"
                         android:textColor="@color/white" />
                 </RelativeLayout>
@@ -403,7 +404,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/margin_small"
                         android:text="روزانه"
                         android:textColor="@color/white" />
                 </RelativeLayout>
