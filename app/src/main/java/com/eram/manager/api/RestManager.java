@@ -1,6 +1,7 @@
 package com.eram.manager.api;
 
 import com.eram.manager.data.model.api.AllReport;
+import com.eram.manager.data.model.api.CreditorAmount;
 import com.eram.manager.data.model.api.DebtorAmount;
 import com.eram.manager.data.model.api.OrganizationUnit;
 import com.eram.manager.data.model.api.PoolReception;
@@ -40,4 +41,11 @@ public interface RestManager {
 
     Observable<SumPrice> getSumPriceReciept(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody);
 
+    Observable<CreditorAmount> getCreditorAmountToday(String baseUrl, PoolReceptionStatusRequestBody poolReceptionStatusRequestBody);
+
+    Observable<CreditorAmount> getCreditorAmountLimit(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody);
+
+    Observable<SumPrice> getSumPriceCreditor(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody);
+
+    Observable<SumPrice> getSumPriceCreditorToday(String baseUrl, PoolReceptionStatusRequestBody poolReceptionStatusRequestBody);
 }

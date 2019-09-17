@@ -1,6 +1,7 @@
 package com.eram.manager.api;
 
 import com.eram.manager.data.model.api.AllReport;
+import com.eram.manager.data.model.api.CreditorAmount;
 import com.eram.manager.data.model.api.DebtorAmount;
 import com.eram.manager.data.model.api.OrganizationUnit;
 import com.eram.manager.data.model.api.PoolReception;
@@ -79,5 +80,26 @@ public class AppRestManager implements RestManager {
     @Override
     public Observable<SumPrice> getSumPriceReciept(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody) {
         return iCallApi.getSumPriceReciept(baseUrl,poolReceptionLimitRequestBody);
+    }
+
+    @Override
+    public Observable<CreditorAmount> getCreditorAmountToday(String baseUrl, PoolReceptionStatusRequestBody poolReceptionStatusRequestBody) {
+        return iCallApi.getCreditorAmountToday(baseUrl,poolReceptionStatusRequestBody);
+    }
+
+    @Override
+    public Observable<CreditorAmount> getCreditorAmountLimit(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody) {
+        return iCallApi.getCreditorAmountLimit(baseUrl,poolReceptionLimitRequestBody);
+    }
+
+    @Override
+    public Observable<SumPrice> getSumPriceCreditor(String baseUrl, PoolReceptionLimitRequestBody poolReceptionLimitRequestBody) {
+        return iCallApi.getSumPriceCreditor(baseUrl,poolReceptionLimitRequestBody);
+    }
+
+
+    @Override
+    public Observable<SumPrice> getSumPriceCreditorToday(String baseUrl, PoolReceptionStatusRequestBody poolReceptionStatusRequestBody) {
+        return iCallApi.getSumPriceCreditorToday(baseUrl,poolReceptionStatusRequestBody);
     }
 }

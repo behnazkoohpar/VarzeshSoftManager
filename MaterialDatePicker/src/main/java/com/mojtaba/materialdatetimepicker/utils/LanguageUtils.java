@@ -34,7 +34,7 @@ public class LanguageUtils {
 
     public static String getLatinNumbers(String string) {
         string = string.replace("۰", "0");
-        string = string.replace("١", "1");
+        string = string.replace("۱", "1");
         string = string.replace("۲", "2");
         string = string.replace("۳", "3");
         string = string.replace("۴", "4");

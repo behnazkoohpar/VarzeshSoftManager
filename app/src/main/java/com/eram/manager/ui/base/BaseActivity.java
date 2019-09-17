@@ -42,8 +42,8 @@ import com.eram.manager.utils.NetworkUtils;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
+//import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+//import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
 
 /**
  * Created by behnaz on 07/07/17.
@@ -68,9 +68,9 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     protected Spannable wrapInCustomfont(String myText) {
         final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/" + "iran_sans.ttf");
-        CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(typeface);
+//        CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(typeface);
         SpannableString spannable = new SpannableString(myText);
-        spannable.setSpan(typefaceSpan, 0, myText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(typeface, 0, myText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannable;
     }
 
@@ -83,7 +83,8 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+//        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(newBase);
     }
 
     @TargetApi(Build.VERSION_CODES.M)

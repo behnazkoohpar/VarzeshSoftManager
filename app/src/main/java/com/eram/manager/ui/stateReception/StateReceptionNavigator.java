@@ -9,4 +9,7 @@ public interface StateReceptionNavigator {
     void rightClick();
 
     void leftClick();
+
+    void backClick();
+
 }

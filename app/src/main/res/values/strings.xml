@@ -4,7 +4,7 @@
     <string name="single_no_item_emitted_error">جوابی دریافت نشد</string>
     <string name="data_receive_error">خطا در دریافت اطلاعات</string>
     <string name="server_error">خطا در برقراری ارتباط</string>
-    <string name="app_name">NAB</string>
+    <string name="app_name">ورزش سافت مدیران</string>
     <string name="please_wait">لطفا صبر کنید</string>
     <string name="login">ورود</string>
     <string name="login_title">ورود به حساب کاربری</string>
@@ -74,7 +74,7 @@
     <string name="traveler">مسافرتی</string>
     <string name="cultureAndArt">فرهنگ و هنر</string>
     <string name="source_pan">کارت مبدا</string>
-    <string name="price">مبلغ(ریال)</string>
+    <string name="price">مبلغ (ریال):</string>
     <string name="enter_amount">مبلغ را وارد کنید</string>
     <string name="money_transfer">انتقال وجه</string>
     <string name="amount_is_null">مبلغ انتقال را وارد کنید</string>
@@ -338,9 +338,9 @@
     <string name="got">دریافتی</string>
     <string name="status">وضعیت پذیرش</string>
     <string name="docManager">کارتابل مدیران</string>
-    <string name="docContractors">پرونده پیمانکاران</string>
-    <string name="docMemberss">پرونده اعضا</string>
-    <string name="kartable">کارتابل مدیران</string>
+    <string name="docContractors"> پیمانکاران</string>
+    <string name="docMemberss"> اعضا</string>
+    <string name="kartable">کارتابل </string>
     <string name="reportStateReception">گزارش وضعیت پذیرش</string>
     <string name="txt_organ">واحد سازمانی</string>
     <string name="txt_time_date">محدوده زمانی گزارش</string>
@@ -350,5 +350,8 @@
     <string name="show_salane">به صورت سالانه تهیه شود</string>
     <string name="reportRecived">گزارش دریافتی</string>
     <string name="functionalReport">گزارش عملکرد</string>
+    <string name="number">تعداد:</string>
+    <string name="before">قبلی</string>
+    <string name="after">بعدی</string>
 
 </resources>

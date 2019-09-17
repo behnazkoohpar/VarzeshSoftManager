@@ -44,6 +44,17 @@
                 android:layout_toLeftOf="@+id/imgCard"
                 android:text="@string/functionalReport"
                 android:textColor="@color/white" />
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:padding="@dimen/padding_common"
+                android:src="@drawable/ic_back"
+                android:onClick="@{()-> viewModel.backClick()}"
+                android:tint="@color/white" />
 
         </RelativeLayout>
 
@@ -157,31 +168,36 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryLight">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="30dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.TextViewWhite"
+                android:textColor="@color/white"
                 android:layout_alignParentRight="true"
+                android:text="@string/after"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/margin_normal"
-                android:onClick="@{()->viewModel.rightClick()}"
-                android:src="@drawable/right"
-                android:tint="@color/white" />
+                android:onClick="@{()->viewModel.rightClick()}" />
 
             <TextView
                 android:id="@+id/date"
+                style="@style/AppTheme.TextViewDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_large" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="30dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.TextViewWhite"
+                android:textColor="@color/white"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/margin_normal"
                 android:onClick="@{()->viewModel.leftClick()}"
-                android:src="@drawable/left"
-                android:tint="@color/white" />
+                android:text="@string/before" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -190,6 +206,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/l2">
@@ -202,23 +219,25 @@
                 android:layout_height="40dp"
                 android:layout_above="@+id/l1"
                 android:layout_margin="@dimen/margin_normal"
-                android:background="@color/colorPrimaryLight">
-                <TextView
-                    style="@style/AppTheme.TextViewDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/margin_small"
-                    android:text="مجموع مبلغ دریافتی:"
-                    android:textColor="@color/white" />
+                android:background="@color/colorPrimaryDark">
 
                 <TextView
                     style="@style/AppTheme.TextViewDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:text="مجموع مبلغ دریافتی:"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/sum"
+                    style="@style/AppTheme.TextViewDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_xxlarge"
                     android:text="0"
                     android:textColor="@color/white" />

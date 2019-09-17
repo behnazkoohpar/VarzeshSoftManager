@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +27,10 @@ import com.eram.manager.utils.CommonUtils;
 import com.eram.manager.utils.NumberFormatter;
 import com.eram.manager.utils.fdate.DateUtil;
 import com.eram.manager.utils.fdate.PersianDate;
+import com.mojtaba.materialdatetimepicker.utils.LanguageUtils;
 import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -42,6 +46,7 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
     private String organSelected = "";
     private String timeDateSelected = "1";
     private OrganizationUnit organizationUnit;
+    private String currentDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,8 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
                 monthh = "0" + month;
             if (day < 10)
                 dayy = "0" + dayy;
-            mActivityStateReceptionBinding.date.setText(persianCalendar.getPersianYear() + "/" + monthh + "/" + dayy);
+            currentDay = persianCalendar.getPersianYear() + "/" + monthh + "/" + dayy;
+            mActivityStateReceptionBinding.date.setText(currentDay);
             callOrganizationUnit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -164,6 +170,10 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
         dialogTime.setContentView(R.layout.layout_time_date);
         TextView onvan = (TextView) dialogTime.findViewById(R.id.textView4);
         ImageView back = (ImageView) dialogTime.findViewById(R.id.back);
+        RelativeLayout roozanel = (RelativeLayout) dialogTime.findViewById(R.id.roozanel);
+        RelativeLayout haftegil = (RelativeLayout) dialogTime.findViewById(R.id.haftegil);
+        RelativeLayout mahanel = (RelativeLayout) dialogTime.findViewById(R.id.mahanel);
+        RelativeLayout salanel = (RelativeLayout) dialogTime.findViewById(R.id.salanel);
         RadioButton roozane = (RadioButton) dialogTime.findViewById(R.id.roozane);
         RadioButton haftegi = (RadioButton) dialogTime.findViewById(R.id.haftegi);
         RadioButton mahane = (RadioButton) dialogTime.findViewById(R.id.mahane);
@@ -217,7 +227,33 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
                 dialogTime.dismiss();
             }
         });
+        roozanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                haftegi.setChecked(false);
+                mahane.setChecked(false);
+                salane.setChecked(false);
+                //roozane
+                timeDateSelected = "1";
+                mActivityStateReceptionBinding.time.setText("روزانه");
+                callGetPoolReceptionDay();
+                dialogTime.dismiss();
+            }
+        });
         haftegi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                roozane.setChecked(false);
+                mahane.setChecked(false);
+                salane.setChecked(false);
+                //haftegi
+                timeDateSelected = "2";
+                mActivityStateReceptionBinding.time.setText("هفتگی");
+                callGetPoolReceptionLimit();
+                dialogTime.dismiss();
+            }
+        });
+        haftegil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 roozane.setChecked(false);
@@ -243,7 +279,33 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
                 dialogTime.dismiss();
             }
         });
+        mahanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                roozane.setChecked(false);
+                haftegi.setChecked(false);
+                salane.setChecked(false);
+                //mahane
+                timeDateSelected = "3";
+                mActivityStateReceptionBinding.time.setText("ماهانه");
+                callGetPoolReceptionLimit();
+                dialogTime.dismiss();
+            }
+        });
         salane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                roozane.setChecked(false);
+                haftegi.setChecked(false);
+                mahane.setChecked(false);
+                //salane
+                timeDateSelected = "4";
+                mActivityStateReceptionBinding.time.setText("سالانه");
+                callGetPoolReceptionLimit();
+                dialogTime.dismiss();
+            }
+        });
+        salanel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 roozane.setChecked(false);
@@ -260,6 +322,10 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
 
     @Override
     public void rightClick() {
+        if (mActivityStateReceptionBinding.date.getText().toString().compareToIgnoreCase(currentDay) >= 0) {
+            CommonUtils.showSingleButtonAlert(this, getString(R.string.text_attention), "تاریخ درخواستی از تاریخ جاری بزرگتر است.", getString(R.string.ok), null);
+            return;
+        }
         if (timeDateSelected.equalsIgnoreCase("1")) {
             mActivityStateReceptionBinding.date.setText(DateUtil.OneDayNext(mActivityStateReceptionBinding.date.getText().toString()));
             callGetPoolReceptionDay();
@@ -267,32 +333,38 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
             mActivityStateReceptionBinding.date.setText(DateUtil.OneWeekNext(mActivityStateReceptionBinding.date.getText().toString()));
             callGetPoolReceptionLimit();
         } else if (timeDateSelected.equalsIgnoreCase("3")) {
-            mActivityStateReceptionBinding.date.setText(DateUtil.OneMonthNext(mActivityStateReceptionBinding.date.getText().toString()));
+            mActivityStateReceptionBinding.date.setText(DateUtil.OneMonthNext(mActivityStateReceptionBinding.date.getText().toString(), "01"));
             callGetPoolReceptionLimit();
         } else if (timeDateSelected.equalsIgnoreCase("4")) {
-            mActivityStateReceptionBinding.date.setText(DateUtil.OneYearNext(mActivityStateReceptionBinding.date.getText().toString()));
+            mActivityStateReceptionBinding.date.setText(DateUtil.OneYearNext(mActivityStateReceptionBinding.date.getText().toString(), "/01/01"));
             callGetPoolReceptionLimit();
         }
     }
 
     @Override
     public void leftClick() {
-        if (timeDateSelected.equalsIgnoreCase("1")) {
-            mActivityStateReceptionBinding.date.setText(DateUtil.OneDayBefor(mActivityStateReceptionBinding.date.getText().toString()));
-            callGetPoolReceptionDay();
+        try {
+            TimeUnit.SECONDS.sleep(2);
 
-        } else if (timeDateSelected.equalsIgnoreCase("2")) {
-            mActivityStateReceptionBinding.date.setText(DateUtil.OneWeekBefor(mActivityStateReceptionBinding.date.getText().toString()));
-            callGetPoolReceptionLimit();
+            if (timeDateSelected.equalsIgnoreCase("1")) {
+                mActivityStateReceptionBinding.date.setText(DateUtil.OneDayBefor(mActivityStateReceptionBinding.date.getText().toString()));
+                callGetPoolReceptionDay();
 
-        } else if (timeDateSelected.equalsIgnoreCase("3")) {
-            mActivityStateReceptionBinding.date.setText(DateUtil.OneMonthBefor(mActivityStateReceptionBinding.date.getText().toString()));
-            callGetPoolReceptionLimit();
+            } else if (timeDateSelected.equalsIgnoreCase("2")) {
+                mActivityStateReceptionBinding.date.setText(DateUtil.OneWeekBefor(mActivityStateReceptionBinding.date.getText().toString()));
+                callGetPoolReceptionLimit();
 
-        } else if (timeDateSelected.equalsIgnoreCase("4")) {
-            mActivityStateReceptionBinding.date.setText(DateUtil.OneYearBefor(mActivityStateReceptionBinding.date.getText().toString()));
-            callGetPoolReceptionLimit();
+            } else if (timeDateSelected.equalsIgnoreCase("3")) {
+                mActivityStateReceptionBinding.date.setText(DateUtil.OneMonthBefor(mActivityStateReceptionBinding.date.getText().toString(), "01"));
+                callGetPoolReceptionLimit();
 
+            } else if (timeDateSelected.equalsIgnoreCase("4")) {
+                mActivityStateReceptionBinding.date.setText(DateUtil.OneYearBefor(mActivityStateReceptionBinding.date.getText().toString(), "/01/01"));
+                callGetPoolReceptionLimit();
+
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -327,16 +399,16 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
                 fromdate = mActivityStateReceptionBinding.date.getText().toString();
             }
             if (timeDateSelected.equalsIgnoreCase("2")) {
-                todate = DateUtil.OneWeekNext(mActivityStateReceptionBinding.date.getText().toString());
-                fromdate = mActivityStateReceptionBinding.date.getText().toString();
+                fromdate = LanguageUtils.getLatinNumbers(DateUtil.hafteJari(mActivityStateReceptionBinding.date.getText().toString()));
+                todate = LanguageUtils.getLatinNumbers(DateUtil.AddDate(fromdate, 6));
             }
             if (timeDateSelected.equalsIgnoreCase("3")) {
-                todate = DateUtil.OneMonthNext(mActivityStateReceptionBinding.date.getText().toString());
-                fromdate = mActivityStateReceptionBinding.date.getText().toString();
+                fromdate = mActivityStateReceptionBinding.date.getText().toString().substring(0, 8) + "01";
+                todate = mActivityStateReceptionBinding.date.getText().toString().substring(0, 8) + "31";
             }
             if (timeDateSelected.equalsIgnoreCase("4")) {
-                todate = DateUtil.OneYearNext(mActivityStateReceptionBinding.date.getText().toString());
-                fromdate = mActivityStateReceptionBinding.date.getText().toString();
+                fromdate = mActivityStateReceptionBinding.date.getText().toString().substring(0, 4) + "/01/01";
+                todate = mActivityStateReceptionBinding.date.getText().toString().substring(0, 4) + "/12/31";
             }
 
             mStateReceptionViewModel.callGetPoolReceptionLimit(fromdate, todate, organSelected);
@@ -379,9 +451,9 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
 
         mActivityStateReceptionBinding.max2.setText(poolReceptionStatus.getAllReceptionedMember_Max_Count());
         mActivityStateReceptionBinding.day2.setText(DateUtil.getNameDay(poolReceptionStatus.getAllReceptionedMember_Max_DateTime()));
-        int[] i2 = persianDate.toJalali(Integer.parseInt(poolReceptionStatus.getPresentMember_Max_DateTime().substring(0, 4)),
-                Integer.parseInt(poolReceptionStatus.getPresentMember_Max_DateTime().substring(5, 7)),
-                Integer.parseInt(poolReceptionStatus.getPresentMember_Max_DateTime().substring(8, 10)));
+        int[] i2 = persianDate.toJalali(Integer.parseInt(poolReceptionStatus.getAllReceptionedMember_Max_DateTime().substring(0, 4)),
+                Integer.parseInt(poolReceptionStatus.getAllReceptionedMember_Max_DateTime().substring(5, 7)),
+                Integer.parseInt(poolReceptionStatus.getAllReceptionedMember_Max_DateTime().substring(8, 10)));
         mActivityStateReceptionBinding.movarekh2.setText(i2[0] + "/" + i2[1] + "/" + i2[2]);
 
         mActivityStateReceptionBinding.max3.setText(poolReceptionStatus.getAllReceptionedMember_Min_Count());
@@ -390,5 +462,10 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
                 Integer.parseInt(poolReceptionStatus.getAllReceptionedMember_Min_DateTime().substring(5, 7)),
                 Integer.parseInt(poolReceptionStatus.getAllReceptionedMember_Min_DateTime().substring(8, 10)));
         mActivityStateReceptionBinding.movarekh3.setText(i3[0] + "/" + i3[1] + "/" + i3[2]);
+    }
+
+    @Override
+    public void backClick() {
+        finish();
     }
 }

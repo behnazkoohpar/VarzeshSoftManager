@@ -263,7 +263,7 @@ public class DateUtil {
         return roozHayeHafteGhabl;
     }
 
-    public static String[] hafteJari() {
+    public static String hafteJari(String dateJari) {
 
         Calendar c = Calendar.getInstance();
         //c.setTime(yourDate);
@@ -273,11 +273,11 @@ public class DateUtil {
         else
             dayOfWeek = -1 * dayOfWeek;
         String[] roozHayeHafteJari = new String[7];
-        String date = AddDate(DateUtil.getCurrentDate(), dayOfWeek);
+        String date = AddDate(dateJari, dayOfWeek);
         for (int i = 1; i <= 7; i++) {
             roozHayeHafteJari[i - 1] = AddDate(date, i - 1);
         }
-        return roozHayeHafteJari;
+        return roozHayeHafteJari[0];
 
     }
 
@@ -421,91 +421,123 @@ public class DateUtil {
         return dt;
     }
 
-    public static String OneMonthNext(String date) {
+    public static String OneMonthNext(String date, String day) {
         String dt = date;  // Start date
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", new Locale("fa_IR"));
-        Calendar c = Calendar.getInstance();
-        try {
-            c.setTime(sdf.parse(dt));
-        } catch (ParseException e) {
-            e.printStackTrace();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", new Locale("fa_IR"));
+//        Calendar c = Calendar.getInstance();
+//        try {
+//            c.setTime(sdf.parse(dt));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        c.add(Calendar.MONTH, 1);  // number of month to add
+//        dt = sdf.format(c.getTime());  // dt is now the new date
+        String year = dt.substring(0, 4);
+        String month = dt.substring(5, 7);
+        if (Integer.parseInt(month) == 12) {
+            year = String.valueOf(Integer.parseInt(year) + 1);
+            month = "01";
+            dt = year + "/" + month + "/" + day;
+        } else {
+            month = String.valueOf(Integer.parseInt(month) + 1);
+            if (month.length() == 1)
+                dt = year + "/0" + month + "/" + day;
+            else
+                dt = year + "/" + month + "/" + day;
         }
-        c.add(Calendar.MONTH, 1);  // number of month to add
-        dt = sdf.format(c.getTime());  // dt is now the new date
         return dt;
     }
 
-    public static String OneMonthBefor(String date) {
+    public static String OneMonthBefor(String date, String day) {
         String dt = date;  // Start date
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", new Locale("fa_IR"));
-        Calendar c = Calendar.getInstance();
-        try {
-            c.setTime(sdf.parse(dt));
-        } catch (ParseException e) {
-            e.printStackTrace();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", new Locale("fa_IR"));
+//        Calendar c = Calendar.getInstance();
+//        try {
+//            c.setTime(sdf.parse(dt));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        c.add(Calendar.MONTH, -1);  // number of month to loss
+//        dt = sdf.format(c.getTime());  // dt is now the new date
+        String year = dt.substring(0, 4);
+        String month = dt.substring(5, 7);
+        if (Integer.parseInt(month) == 1) {
+            year = String.valueOf(Integer.parseInt(year) - 1);
+            month = "12";
+            dt = year + "/" + month + "/" + day;
+        } else {
+            month = String.valueOf(Integer.parseInt(month) - 1);
+            if (month.length() == 1)
+                dt = year + "/0" + month + "/" + day;
+            else
+                dt = year + "/" + month + "/" + day;
         }
-        c.add(Calendar.MONTH, -1);  // number of month to loss
-        dt = sdf.format(c.getTime());  // dt is now the new date
         return dt;
     }
 
-    public static String OneYearNext(String date) {
+    public static String OneYearNext(String date, String monthday) {
         String dt = date;  // Start date
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", new Locale("fa_IR"));
-        Calendar c = Calendar.getInstance();
-        try {
-            c.setTime(sdf.parse(dt));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        c.add(Calendar.YEAR, 1);  // number of year to add
-        dt = sdf.format(c.getTime());  // dt is now the new date
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", new Locale("fa_IR"));
+//        Calendar c = Calendar.getInstance();
+//        try {
+//            c.setTime(sdf.parse(dt));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        c.add(Calendar.YEAR, 1);  // number of year to add
+//        dt = sdf.format(c.getTime());  // dt is now the new date
+        String year = dt.substring(0, 4);
+        year = String.valueOf(Integer.parseInt(year) + 1);
+        dt = year + monthday;
         return dt;
     }
 
-    public static String OneYearBefor(String date) {
+    public static String OneYearBefor(String date, String monthDay) {
         String dt = date;  // Start date
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", new Locale("fa_IR"));
-        Calendar c = Calendar.getInstance();
-        try {
-            c.setTime(sdf.parse(dt));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        c.add(Calendar.YEAR, -1);  // number of year to loss
-        dt = sdf.format(c.getTime());  // dt is now the new date
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", new Locale("fa_IR"));
+//        Calendar c = Calendar.getInstance();
+//        try {
+//            c.setTime(sdf.parse(dt));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        c.add(Calendar.YEAR, -1);  // number of year to loss
+//        dt = sdf.format(c.getTime());  // dt is now the new date
+
+        String year = dt.substring(0, 4);
+        year = String.valueOf(Integer.parseInt(year) - 1);
+        dt = year + monthDay;
         return dt;
     }
 
-    public static String getNameDay(String date) {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Integer.parseInt(date.substring(0, 4)),
-                Integer.parseInt(date.substring(5, 7)),
-                Integer.parseInt(date.substring(8, 10)));
-        int day = cal.get(Calendar.DAY_OF_WEEK);
+    public static String getNameDay(String date1) {
+        String dateString = String.format("%d-%d-%d", Integer.parseInt(date1.substring(0, 4)),
+                Integer.parseInt(date1.substring(5, 7)),
+                Integer.parseInt(date1.substring(8, 10)));
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-M-d").parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String dayOfWeek = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
+        System.out.println(dayOfWeek);
         String dayName = "";
-        switch (day) {
-            case 2:
-                dayName = "شنبه";
-                break;
-            case 3:
-                dayName = "یک شنبه";
-                break;
-            case 4:
-                dayName = "دو شنبه";
-                break;
-            case 5:
-                dayName = "سه شنبه";
-                break;
-            case 6:
-                dayName = "چهار شنبه";
-                break;
-            case 7:
-                dayName = "پنج شنبه";
-                break;
-            case 1:
-                dayName = "جمعه";
-        }
+        if (dayOfWeek.equalsIgnoreCase("FRIDAY"))
+            return "جمعه";
+       if (dayOfWeek.equalsIgnoreCase("SATURDAY"))
+            return "شنبه";
+       if (dayOfWeek.equalsIgnoreCase("SUNDAY"))
+            return "یکشنبه";
+       if (dayOfWeek.equalsIgnoreCase("MONDAY"))
+            return "دوشنبه";
+       if (dayOfWeek.equalsIgnoreCase("TUESDAY"))
+            return "سه شنبه";
+       if (dayOfWeek.equalsIgnoreCase("WEDNESDAY"))
+            return "چهارشنبه";
+       if (dayOfWeek.equalsIgnoreCase("THURSDAY"))
+            return "پنجشنبه";
+
         return dayName;
     }
 

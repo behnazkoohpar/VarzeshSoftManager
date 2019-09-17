@@ -58,7 +58,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
+//import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
 
 public final class CommonUtils implements AppConstants {
 
@@ -133,13 +133,13 @@ public final class CommonUtils implements AppConstants {
         return new SimpleDateFormat(TIMESTAMP_FORMAT, Locale.US).format(new Date());
     }
 
-    protected static Spannable wrapInCustomfont(Context context, String myText) {
-        final Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + "iran_sans.ttf");
-        CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(typeface);
-        SpannableString spannable = new SpannableString(myText);
-        spannable.setSpan(typefaceSpan, 0, myText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return spannable;
-    }
+//    protected static Spannable wrapInCustomfont(Context context, String myText) {
+//        final Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + "iran_sans.ttf");
+//        CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(typeface);
+//        SpannableString spannable = new SpannableString(myText);
+//        spannable.setSpan(typefaceSpan, 0, myText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        return spannable;
+//    }
 
     public static void showSingleButtonAlert(Context context, String title, String msg, String buttonTitle, final IL listner) {
         try {

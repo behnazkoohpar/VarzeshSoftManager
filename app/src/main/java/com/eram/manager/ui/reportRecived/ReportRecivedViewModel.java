@@ -62,6 +62,9 @@ public class ReportRecivedViewModel extends BaseViewModel<ReportRecivedNavigator
     public void leftClick() {
         getNavigator().leftClick();
     }
+    public void backClick() {
+        getNavigator().backClick();
+    }
 
     public void getOrganizatonUnit() {
         Disposable disposable = mRestManager.getOrganizatonUnit(AppBaseUrl.BASE_URL + AppBaseUrl.GET_ORGANIZATION_UNIT)

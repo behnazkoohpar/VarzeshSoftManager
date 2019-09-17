@@ -59,6 +59,9 @@ public class StateReceptionViewModel extends BaseViewModel<StateReceptionNavigat
     public void leftClick() {
         getNavigator().leftClick();
     }
+    public void backClick() {
+        getNavigator().backClick();
+    }
 
     public void getOrganizatonUnit() {
         Disposable disposable = mRestManager.getOrganizatonUnit(AppBaseUrl.BASE_URL + AppBaseUrl.GET_ORGANIZATION_UNIT)

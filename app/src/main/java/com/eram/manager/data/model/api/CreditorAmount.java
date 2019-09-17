@@ -32,15 +32,15 @@ public class CreditorAmount {
     }
 
     public class Result {
-        private int OperationCount;
+        private String OperationCount;
         private String OperationTitle;
         private String TotalAmount;
 
-        public int getOperationCount() {
+        public String getOperationCount() {
             return OperationCount;
         }
 
-        public void setOperationCount(int operationCount) {
+        public void setOperationCount(String operationCount) {
             OperationCount = operationCount;
         }
 

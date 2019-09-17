@@ -4,10 +4,10 @@
     <color name="black_effective">#363636</color>
     <color name="gray">#a9a9a9</color>
     <color name="path_color">#00c168</color>
-    <color name="colorPrimary">#7b09cc</color>
-    <color name="colorPrimaryLight">#8A2DCC</color>
+    <color name="colorPrimary">#9811D1</color>
+    <color name="colorPrimaryLight">#C925C5</color>
     <color name="colorPrimaryHelp">#e7ebed</color>
-    <color name="colorPrimaryDark">#5F069E</color>
+    <color name="colorPrimaryDark">#721B92</color>
     <color name="colorAccent">#0a0a0a</color>
     <color name="colorNavigataion">#00658b</color>
     <color name="statusBar">#00658b</color>
@@ -61,6 +61,6 @@
 
     <color name="white" >#ffffff</color>
     <color name="white_transparent" >#99ffffff</color>
-    <color name="priple_transparent" >#997b09cc</color>
+    <color name="priple_transparent" >#999811D1</color>
 
 </resources>

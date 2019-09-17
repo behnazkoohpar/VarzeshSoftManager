@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,10 +26,8 @@ import com.eram.manager.utils.AppConstants;
 import com.eram.manager.utils.CommonUtils;
 import com.eram.manager.utils.NumberFormatter;
 import com.eram.manager.utils.fdate.DateUtil;
-import com.ibm.icu.text.DateFormat;
+import com.mojtaba.materialdatetimepicker.utils.LanguageUtils;
 import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
-
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -44,6 +43,7 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     private String organSelected = "";
     private String timeDateSelected = "1";
     private OrganizationUnit organizationUnit;
+    private String currentDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,9 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 monthh = "0" + month;
             if (day < 10)
                 dayy = "0" + dayy;
-            mActivityReportRecivedBinding.date.setText(persianCalendar.getPersianYear() + "/" + monthh + "/" + dayy);
+            currentDay = persianCalendar.getPersianYear() + "/" + monthh + "/" + dayy;
+            mActivityReportRecivedBinding.date.setText(currentDay);
+
             callOrganizationUnit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -145,6 +147,22 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 dialogSort.dismiss();
                 organSelected = organizationUnit.getResult().get(position).getID();
                 mActivityReportRecivedBinding.organization.setText(organizationUnit.getResult().get(position).getName());
+                if (timeDateSelected.equalsIgnoreCase("1")) {
+                    if (mActivityReportRecivedBinding.date.getText().toString().equalsIgnoreCase(currentDay))
+                        callGetDebtorAmountToday();
+                    else
+                        callGetDebtorAmountLimit();
+                    callGetSumPriceReceipt();
+                } else if (timeDateSelected.equalsIgnoreCase("2")) {
+                    callGetDebtorAmountLimit();
+                    callGetSumPriceReceipt();
+                } else if (timeDateSelected.equalsIgnoreCase("3")) {
+                    callGetDebtorAmountLimit();
+                    callGetSumPriceReceipt();
+                } else if (timeDateSelected.equalsIgnoreCase("4")) {
+                    callGetDebtorAmountLimit();
+                    callGetSumPriceReceipt();
+                }
             }
         });
     }
@@ -155,6 +173,10 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
         dialogTime.setContentView(R.layout.layout_time_date);
         TextView onvan = (TextView) dialogTime.findViewById(R.id.textView4);
         ImageView back = (ImageView) dialogTime.findViewById(R.id.back);
+        RelativeLayout roozanel = (RelativeLayout) dialogTime.findViewById(R.id.roozanel);
+        RelativeLayout haftegil = (RelativeLayout) dialogTime.findViewById(R.id.haftegil);
+        RelativeLayout mahanel = (RelativeLayout) dialogTime.findViewById(R.id.mahanel);
+        RelativeLayout salanel = (RelativeLayout) dialogTime.findViewById(R.id.salanel);
         RadioButton roozane = (RadioButton) dialogTime.findViewById(R.id.roozane);
         RadioButton haftegi = (RadioButton) dialogTime.findViewById(R.id.haftegi);
         RadioButton mahane = (RadioButton) dialogTime.findViewById(R.id.mahane);
@@ -204,7 +226,28 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 //roozane
                 timeDateSelected = "1";
                 mActivityReportRecivedBinding.time.setText("روزانه");
-                callGetDebtorAmountToday();
+                if (mActivityReportRecivedBinding.date.getText().toString().equalsIgnoreCase(currentDay))
+                    callGetDebtorAmountToday();
+                else
+                    callGetDebtorAmountLimit();
+                callGetSumPriceReceipt();
+                dialogTime.dismiss();
+            }
+        });
+        roozanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                haftegi.setChecked(false);
+                mahane.setChecked(false);
+                salane.setChecked(false);
+                //roozane
+                timeDateSelected = "1";
+                mActivityReportRecivedBinding.time.setText("روزانه");
+                if (mActivityReportRecivedBinding.date.getText().toString().equalsIgnoreCase(currentDay))
+                    callGetDebtorAmountToday();
+                else
+                    callGetDebtorAmountLimit();
+                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -218,6 +261,21 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "2";
                 mActivityReportRecivedBinding.time.setText("هفتگی");
                 callGetDebtorAmountLimit();
+                callGetSumPriceReceipt();
+                dialogTime.dismiss();
+            }
+        });
+        haftegil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                roozane.setChecked(false);
+                mahane.setChecked(false);
+                salane.setChecked(false);
+                //haftegi
+                timeDateSelected = "2";
+                mActivityReportRecivedBinding.time.setText("هفتگی");
+                callGetDebtorAmountLimit();
+                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -231,6 +289,21 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "3";
                 mActivityReportRecivedBinding.time.setText("ماهانه");
                 callGetDebtorAmountLimit();
+                callGetSumPriceReceipt();
+                dialogTime.dismiss();
+            }
+        });
+        mahanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                roozane.setChecked(false);
+                haftegi.setChecked(false);
+                salane.setChecked(false);
+                //mahane
+                timeDateSelected = "3";
+                mActivityReportRecivedBinding.time.setText("ماهانه");
+                callGetDebtorAmountLimit();
+                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -244,6 +317,21 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "4";
                 mActivityReportRecivedBinding.time.setText("سالانه");
                 callGetDebtorAmountLimit();
+                callGetSumPriceReceipt();
+                dialogTime.dismiss();
+            }
+        });
+        salanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                roozane.setChecked(false);
+                haftegi.setChecked(false);
+                mahane.setChecked(false);
+                //salane
+                timeDateSelected = "4";
+                mActivityReportRecivedBinding.time.setText("سالانه");
+                callGetDebtorAmountLimit();
+                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -251,18 +339,29 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
 
     @Override
     public void rightClick() {
+        if (mActivityReportRecivedBinding.date.getText().toString().compareToIgnoreCase(currentDay) >= 0) {
+            CommonUtils.showSingleButtonAlert(this,getString(R.string.text_attention),"تاریخ درخواستی از تاریخ جاری بزرگتر است.",getString(R.string.ok),null);
+            return;
+        }
         if (timeDateSelected.equalsIgnoreCase("1")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneDayNext(mActivityReportRecivedBinding.date.getText().toString()));
-            callGetDebtorAmountToday();
+            if (mActivityReportRecivedBinding.date.getText().toString().equalsIgnoreCase(currentDay))
+                callGetDebtorAmountToday();
+            else
+                callGetDebtorAmountLimit();
+            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("2")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneWeekNext(mActivityReportRecivedBinding.date.getText().toString()));
             callGetDebtorAmountLimit();
+            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("3")) {
-            mActivityReportRecivedBinding.date.setText(DateUtil.OneMonthNext(mActivityReportRecivedBinding.date.getText().toString()));
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneMonthNext(mActivityReportRecivedBinding.date.getText().toString(), "01"));
             callGetDebtorAmountLimit();
+            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("4")) {
-            mActivityReportRecivedBinding.date.setText(DateUtil.OneYearNext(mActivityReportRecivedBinding.date.getText().toString()));
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneYearNext(mActivityReportRecivedBinding.date.getText().toString(), "/01/01"));
             callGetDebtorAmountLimit();
+            callGetSumPriceReceipt();
         }
     }
 
@@ -270,16 +369,23 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     public void leftClick() {
         if (timeDateSelected.equalsIgnoreCase("1")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneDayBefor(mActivityReportRecivedBinding.date.getText().toString()));
-            callGetDebtorAmountToday();
+            if (mActivityReportRecivedBinding.date.getText().toString().equalsIgnoreCase(currentDay))
+                callGetDebtorAmountToday();
+            else
+                callGetDebtorAmountLimit();
+            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("2")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneWeekBefor(mActivityReportRecivedBinding.date.getText().toString()));
             callGetDebtorAmountLimit();
+            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("3")) {
-            mActivityReportRecivedBinding.date.setText(DateUtil.OneMonthBefor(mActivityReportRecivedBinding.date.getText().toString()));
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneMonthBefor(mActivityReportRecivedBinding.date.getText().toString(), "01"));
             callGetDebtorAmountLimit();
+            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("4")) {
-            mActivityReportRecivedBinding.date.setText(DateUtil.OneYearBefor(mActivityReportRecivedBinding.date.getText().toString()));
+            mActivityReportRecivedBinding.date.setText(DateUtil.OneYearBefor(mActivityReportRecivedBinding.date.getText().toString(), "/01/01"));
             callGetDebtorAmountLimit();
+            callGetSumPriceReceipt();
         }
     }
 
@@ -295,7 +401,14 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     }
 
     private void receivedGetDebtorAmountToday(DebtorAmount debtorAmount) {
-
+        if (debtorAmount.isStatus()) {
+            LinearLayoutManager layoutManagr = new LinearLayoutManager(this);
+            mActivityReportRecivedBinding.list.setLayoutManager(layoutManagr);
+            ReportAdapter mAdapter = new ReportAdapter(debtorAmount.getResult());
+            mActivityReportRecivedBinding.list.setAdapter(mAdapter);
+        } else {
+            CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), debtorAmount.getErrmessage(), null, null);
+        }
     }
 
     private void callGetDebtorAmountLimit() {
@@ -306,21 +419,19 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 fromdate = mActivityReportRecivedBinding.date.getText().toString();
             }
             if (timeDateSelected.equalsIgnoreCase("2")) {
-                todate = DateUtil.OneWeekNext(mActivityReportRecivedBinding.date.getText().toString());
-                fromdate = mActivityReportRecivedBinding.date.getText().toString();
+                fromdate = LanguageUtils.getLatinNumbers(DateUtil.hafteJari(mActivityReportRecivedBinding.date.getText().toString()));
+                todate = LanguageUtils.getLatinNumbers(DateUtil.AddDate(fromdate, 6));
             }
             if (timeDateSelected.equalsIgnoreCase("3")) {
-                todate = DateUtil.OneMonthNext(mActivityReportRecivedBinding.date.getText().toString());
-                fromdate = mActivityReportRecivedBinding.date.getText().toString();
+                fromdate = mActivityReportRecivedBinding.date.getText().toString().substring(0, 8) + "01";
+                todate = mActivityReportRecivedBinding.date.getText().toString().substring(0, 8) + "31";
             }
             if (timeDateSelected.equalsIgnoreCase("4")) {
-                todate = DateUtil.OneYearNext(mActivityReportRecivedBinding.date.getText().toString());
-                fromdate = mActivityReportRecivedBinding.date.getText().toString();
+                fromdate = mActivityReportRecivedBinding.date.getText().toString().substring(0, 4) + "/01/01";
+                todate = mActivityReportRecivedBinding.date.getText().toString().substring(0, 4) + "/12/31";
             }
-
             mReportRecivedViewModel.callGetDebtorAmountLimit(fromdate, todate, organSelected);
             mReportRecivedViewModel.getDebtorAmountLimitResponseModelMutableLiveData().observe(this, this::receivedGetDebtorAmountLimit);
-
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -328,7 +439,14 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     }
 
     private void receivedGetDebtorAmountLimit(DebtorAmount debtorAmount) {
-
+        if (debtorAmount.isStatus()) {
+            LinearLayoutManager layoutManagr = new LinearLayoutManager(this);
+            mActivityReportRecivedBinding.list.setLayoutManager(layoutManagr);
+            ReportAdapter mAdapter = new ReportAdapter(debtorAmount.getResult());
+            mActivityReportRecivedBinding.list.setAdapter(mAdapter);
+        } else {
+            CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), debtorAmount.getErrmessage(), null, null);
+        }
     }
 
     private void callGetSumPriceReceipt() {
@@ -356,12 +474,12 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 fromdate = dateYear + "/" + dateMonth + "/" + dateDay;
             }
             if (timeDateSelected.equalsIgnoreCase("3")) {
-                String dateMiladi = DateUtil.changeFarsiToMiladi(mActivityReportRecivedBinding.date.getText().toString());
+                String dateMiladi = DateUtil.changeFarsiToMiladi(DateUtil.OneMonthBefor(mActivityReportRecivedBinding.date.getText().toString(), "31"));
                 String dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
                 String dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
                 String dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
                 todate = dateYear + "/" + dateMonth + "/" + dateDay;
-                dateMiladi = DateUtil.changeFarsiToMiladi(DateUtil.OneMonthBefor(mActivityReportRecivedBinding.date.getText().toString()));
+                dateMiladi = DateUtil.changeFarsiToMiladi(DateUtil.OneMonthBefor(mActivityReportRecivedBinding.date.getText().toString(), "01"));
                 dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
                 dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
                 dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
@@ -373,7 +491,7 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 String dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
                 String dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
                 todate = dateYear + "/" + dateMonth + "/" + dateDay;
-                dateMiladi = DateUtil.changeFarsiToMiladi(DateUtil.OneYearBefor(mActivityReportRecivedBinding.date.getText().toString()));
+                dateMiladi = DateUtil.changeFarsiToMiladi(DateUtil.OneYearBefor(mActivityReportRecivedBinding.date.getText().toString(), "/01/01"));
                 dateYear = NumberFormatter.convertPriceToNumber(dateMiladi.substring(0, 4));
                 dateMonth = NumberFormatter.convertPriceToNumber(dateMiladi.substring(5, 7));
                 dateDay = NumberFormatter.convertPriceToNumber(dateMiladi.substring(8, 10));
@@ -391,6 +509,11 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
 
     private void receivedSumPriceReciept(SumPrice sumPrice) {
         if (sumPrice.isStatus())
-            mActivityReportRecivedBinding.sum.setText(sumPrice.getSumTotalAmount());
+            mActivityReportRecivedBinding.sum.setText(NumberFormatter.format(Long.parseLong(sumPrice.getSumTotalAmount())));
+    }
+
+    @Override
+    public void backClick() {
+        finish();
     }
 }

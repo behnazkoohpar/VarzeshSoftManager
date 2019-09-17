@@ -1,6 +1,7 @@
 package com.eram.manager.api;
 
 import com.eram.manager.data.model.api.AllReport;
+import com.eram.manager.data.model.api.CreditorAmount;
 import com.eram.manager.data.model.api.DebtorAmount;
 import com.eram.manager.data.model.api.OrganizationUnit;
 import com.eram.manager.data.model.api.PoolReception;
@@ -56,7 +57,19 @@ public interface ICallApi {
 
     @POST
     Observable<DebtorAmount> getDebtorAmountLimit(@Url String baseUrl,@Body PoolReceptionLimitRequestBody poolReceptionLimitRequestBody);
-    
+
+    @POST
+    Observable<CreditorAmount> getCreditorAmountToday(@Url String baseUrl,@Body PoolReceptionStatusRequestBody poolReceptionStatusRequestBody);
+
+    @POST
+    Observable<CreditorAmount> getCreditorAmountLimit(@Url String baseUrl,@Body PoolReceptionLimitRequestBody poolReceptionLimitRequestBody);
+
+    @POST
+    Observable<SumPrice> getSumPriceCreditor(@Url String baseUrl,@Body PoolReceptionLimitRequestBody poolReceptionLimitRequestBody);
+
+    @POST
+    Observable<SumPrice> getSumPriceCreditorToday(@Url String baseUrl,@Body PoolReceptionStatusRequestBody poolReceptionStatusRequestBody);
+
 //    @GET
 //    Call<ResponseBody> callMapAddress(@Url String url, @Body RequestBody body);
 

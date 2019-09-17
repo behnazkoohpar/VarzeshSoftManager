@@ -10,7 +10,6 @@ import androidx.multidex.MultiDex;
 import com.eram.manager.di.component.DaggerAppComponent;
 import com.eram.manager.utils.AppConstants;
 import com.eram.manager.utils.AppLogger;
-import com.orm.SugarApp;
 
 import javax.inject.Inject;
 
@@ -21,7 +20,7 @@ import dagger.android.HasActivityInjector;
  * Created by behnaz on 10/29/2017.
  */
 
-public class App extends SugarApp implements HasActivityInjector {
+public class App extends Application implements HasActivityInjector {
 
     public static Context context;
     public static SharedPreferences preferences;

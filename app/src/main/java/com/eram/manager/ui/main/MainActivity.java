@@ -25,8 +25,6 @@ import com.eram.manager.ui.reportRecived.ReportRecivedActivity;
 import com.eram.manager.ui.stateReception.StateReceptionActivity;
 import com.eram.manager.utils.AppConstants;
 import com.eram.manager.utils.CommonUtils;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.navigation.NavigationView;
 import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
 
@@ -39,7 +37,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     MainViewModel mMainViewModel;
 
     ActivityMainBinding mActivityMainBinding;
-    private GoogleApiAvailability googleApiAvailability;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

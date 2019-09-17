@@ -40,7 +40,6 @@
             style="@style/AppTheme.TextViewLableGray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/img"
             android:text="@string/title"
             android:visibility="gone"
             android:textAlignment="center" />

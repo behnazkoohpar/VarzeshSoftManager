@@ -10,4 +10,5 @@ public interface ReportRecivedNavigator {
 
     void leftClick();
 
+    void backClick();
 }
