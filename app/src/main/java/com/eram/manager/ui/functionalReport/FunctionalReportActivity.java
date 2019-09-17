@@ -345,8 +345,9 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
 
     @Override
     public void rightClick() {
+        mActivityFunctionalReportBinding.next.setEnabled(false);
         if (mActivityFunctionalReportBinding.date.getText().toString().compareToIgnoreCase(currentDay) >= 0) {
-            CommonUtils.showSingleButtonAlert(this,getString(R.string.text_attention),"تاریخ درخواستی از تاریخ جاری بزرگتر است.",getString(R.string.ok),null);
+            CommonUtils.showSingleButtonAlert(this, getString(R.string.text_attention), "تاریخ درخواستی از تاریخ جاری بزرگتر است.", getString(R.string.ok), null);
             return;
         }
         if (timeDateSelected.equalsIgnoreCase("1")) {
@@ -375,6 +376,7 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
 
     @Override
     public void leftClick() {
+        mActivityFunctionalReportBinding.before.setEnabled(false);
         if (timeDateSelected.equalsIgnoreCase("1")) {
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneDayBefor(mActivityFunctionalReportBinding.date.getText().toString()));
             if (mActivityFunctionalReportBinding.date.getText().toString().equalsIgnoreCase(currentDay)) {
@@ -403,7 +405,6 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
         try {
             mFunctionalReportViewModel.callGetCreditorAmountToday(organSelected);
             mFunctionalReportViewModel.getCreditorAmountTodayResponseModelMutableLiveData().observe(this, this::receivedGetCreditorAmountToday);
-
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(FunctionalReportActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -411,6 +412,8 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
     }
 
     private void receivedGetCreditorAmountToday(CreditorAmount creditorAmount) {
+        mActivityFunctionalReportBinding.next.setEnabled(true);
+        mActivityFunctionalReportBinding.before.setEnabled(true);
         if (creditorAmount.isStatus()) {
             LinearLayoutManager layoutManagr = new LinearLayoutManager(this);
             mActivityFunctionalReportBinding.list.setLayoutManager(layoutManagr);
@@ -449,6 +452,8 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
     }
 
     private void receivedGetCreditorAmountLimit(CreditorAmount creditorAmount) {
+        mActivityFunctionalReportBinding.next.setEnabled(true);
+        mActivityFunctionalReportBinding.before.setEnabled(true);
         if (creditorAmount.isStatus()) {
             LinearLayoutManager layoutManagr = new LinearLayoutManager(this);
             mActivityFunctionalReportBinding.list.setLayoutManager(layoutManagr);
@@ -488,13 +493,14 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
     }
 
     private void receivedSumPriceReciept(SumPrice sumPrice) {
+        mActivityFunctionalReportBinding.next.setEnabled(true);
+        mActivityFunctionalReportBinding.before.setEnabled(true);
         if (sumPrice.isStatus())
             mActivityFunctionalReportBinding.sum.setText(NumberFormatter.format(Long.parseLong(sumPrice.getSumTotalAmount())));
     }
 
     private void callGetSumPriceCreditorToday() {
         try {
-
             mFunctionalReportViewModel.callGetSumPriceCreditorToday(organSelected);
             mFunctionalReportViewModel.getSumPriceCreditorTodayResponseModelMutableLiveData().observe(this, this::receivedSumPriceRecieptToday);
 
@@ -505,6 +511,8 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
     }
 
     private void receivedSumPriceRecieptToday(SumPrice sumPrice) {
+        mActivityFunctionalReportBinding.next.setEnabled(true);
+        mActivityFunctionalReportBinding.before.setEnabled(true);
         if (sumPrice.isStatus())
             mActivityFunctionalReportBinding.sum.setText(NumberFormatter.format(Long.parseLong(sumPrice.getSumTotalAmount())));
     }

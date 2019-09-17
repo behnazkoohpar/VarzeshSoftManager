@@ -30,8 +30,6 @@ import com.eram.manager.utils.fdate.PersianDate;
 import com.mojtaba.materialdatetimepicker.utils.LanguageUtils;
 import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
 
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Inject;
 
 public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionBinding, StateReceptionViewModel> implements AppConstants, StateReceptionNavigator {
@@ -322,6 +320,7 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
 
     @Override
     public void rightClick() {
+        mActivityStateReceptionBinding.next.setEnabled(false);
         if (mActivityStateReceptionBinding.date.getText().toString().compareToIgnoreCase(currentDay) >= 0) {
             CommonUtils.showSingleButtonAlert(this, getString(R.string.text_attention), "تاریخ درخواستی از تاریخ جاری بزرگتر است.", getString(R.string.ok), null);
             return;
@@ -343,28 +342,19 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
 
     @Override
     public void leftClick() {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-
-            if (timeDateSelected.equalsIgnoreCase("1")) {
-                mActivityStateReceptionBinding.date.setText(DateUtil.OneDayBefor(mActivityStateReceptionBinding.date.getText().toString()));
-                callGetPoolReceptionDay();
-
-            } else if (timeDateSelected.equalsIgnoreCase("2")) {
-                mActivityStateReceptionBinding.date.setText(DateUtil.OneWeekBefor(mActivityStateReceptionBinding.date.getText().toString()));
-                callGetPoolReceptionLimit();
-
-            } else if (timeDateSelected.equalsIgnoreCase("3")) {
-                mActivityStateReceptionBinding.date.setText(DateUtil.OneMonthBefor(mActivityStateReceptionBinding.date.getText().toString(), "01"));
-                callGetPoolReceptionLimit();
-
-            } else if (timeDateSelected.equalsIgnoreCase("4")) {
-                mActivityStateReceptionBinding.date.setText(DateUtil.OneYearBefor(mActivityStateReceptionBinding.date.getText().toString(), "/01/01"));
-                callGetPoolReceptionLimit();
-
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        mActivityStateReceptionBinding.before.setEnabled(false);
+        if (timeDateSelected.equalsIgnoreCase("1")) {
+            mActivityStateReceptionBinding.date.setText(DateUtil.OneDayBefor(mActivityStateReceptionBinding.date.getText().toString()));
+            callGetPoolReceptionDay();
+        } else if (timeDateSelected.equalsIgnoreCase("2")) {
+            mActivityStateReceptionBinding.date.setText(DateUtil.OneWeekBefor(mActivityStateReceptionBinding.date.getText().toString()));
+            callGetPoolReceptionLimit();
+        } else if (timeDateSelected.equalsIgnoreCase("3")) {
+            mActivityStateReceptionBinding.date.setText(DateUtil.OneMonthBefor(mActivityStateReceptionBinding.date.getText().toString(), "01"));
+            callGetPoolReceptionLimit();
+        } else if (timeDateSelected.equalsIgnoreCase("4")) {
+            mActivityStateReceptionBinding.date.setText(DateUtil.OneYearBefor(mActivityStateReceptionBinding.date.getText().toString(), "/01/01"));
+            callGetPoolReceptionLimit();
         }
     }
 
@@ -384,6 +374,8 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
     }
 
     private void receivedGetPoolReceptionDay(PoolReception poolReception) {
+        mActivityStateReceptionBinding.before.setEnabled(true);
+        mActivityStateReceptionBinding.next.setEnabled(true);
         if (poolReception != null && poolReception.isStatus()) {
             mActivityStateReceptionBinding.numberPresent.setText(poolReception.getPresentMemberCount());
             mActivityStateReceptionBinding.numberAbsent.setText(poolReception.getExitedMemberCount());
@@ -421,6 +413,8 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
     }
 
     private void receivedGetPoolReceptionLimit(PoolReceptionLimit poolReceptionLimit) {
+        mActivityStateReceptionBinding.before.setEnabled(true);
+        mActivityStateReceptionBinding.next.setEnabled(true);
         if (poolReceptionLimit != null && poolReceptionLimit.isStatus()) {
             mActivityStateReceptionBinding.numberPresent.setText("0");
             mActivityStateReceptionBinding.numberAbsent.setText(poolReceptionLimit.getAllReceptionedMemberCount());
@@ -440,7 +434,8 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
     }
 
     private void receivedGetPoolReceptionStatus(PoolReceptionStatus poolReceptionStatus) {
-
+        mActivityStateReceptionBinding.before.setEnabled(true);
+        mActivityStateReceptionBinding.next.setEnabled(true);
         mActivityStateReceptionBinding.max.setText(poolReceptionStatus.getPresentMember_Max_Count());
         mActivityStateReceptionBinding.day.setText(DateUtil.getNameDay(poolReceptionStatus.getPresentMember_Max_DateTime()));
         PersianDate persianDate = new PersianDate();

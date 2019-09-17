@@ -170,6 +170,7 @@
             android:background="@color/colorPrimaryLight">
 
             <TextView
+                android:id="@+id/next"
                 style="@style/AppTheme.TextViewWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -190,6 +191,7 @@
                 android:textSize="@dimen/font_size_large" />
 
             <TextView
+                android:id="@+id/before"
                 style="@style/AppTheme.TextViewWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

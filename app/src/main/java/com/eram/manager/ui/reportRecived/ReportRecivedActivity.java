@@ -339,8 +339,9 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
 
     @Override
     public void rightClick() {
+        mActivityReportRecivedBinding.next.setEnabled(false);
         if (mActivityReportRecivedBinding.date.getText().toString().compareToIgnoreCase(currentDay) >= 0) {
-            CommonUtils.showSingleButtonAlert(this,getString(R.string.text_attention),"تاریخ درخواستی از تاریخ جاری بزرگتر است.",getString(R.string.ok),null);
+            CommonUtils.showSingleButtonAlert(this, getString(R.string.text_attention), "تاریخ درخواستی از تاریخ جاری بزرگتر است.", getString(R.string.ok), null);
             return;
         }
         if (timeDateSelected.equalsIgnoreCase("1")) {
@@ -367,6 +368,7 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
 
     @Override
     public void leftClick() {
+        mActivityReportRecivedBinding.before.setEnabled(false);
         if (timeDateSelected.equalsIgnoreCase("1")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneDayBefor(mActivityReportRecivedBinding.date.getText().toString()));
             if (mActivityReportRecivedBinding.date.getText().toString().equalsIgnoreCase(currentDay))
@@ -401,6 +403,8 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     }
 
     private void receivedGetDebtorAmountToday(DebtorAmount debtorAmount) {
+        mActivityReportRecivedBinding.before.setEnabled(true);
+        mActivityReportRecivedBinding.next.setEnabled(true);
         if (debtorAmount.isStatus()) {
             LinearLayoutManager layoutManagr = new LinearLayoutManager(this);
             mActivityReportRecivedBinding.list.setLayoutManager(layoutManagr);
@@ -439,6 +443,8 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     }
 
     private void receivedGetDebtorAmountLimit(DebtorAmount debtorAmount) {
+        mActivityReportRecivedBinding.before.setEnabled(true);
+        mActivityReportRecivedBinding.next.setEnabled(true);
         if (debtorAmount.isStatus()) {
             LinearLayoutManager layoutManagr = new LinearLayoutManager(this);
             mActivityReportRecivedBinding.list.setLayoutManager(layoutManagr);
@@ -508,6 +514,8 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
     }
 
     private void receivedSumPriceReciept(SumPrice sumPrice) {
+        mActivityReportRecivedBinding.before.setEnabled(true);
+        mActivityReportRecivedBinding.next.setEnabled(true);
         if (sumPrice.isStatus())
             mActivityReportRecivedBinding.sum.setText(NumberFormatter.format(Long.parseLong(sumPrice.getSumTotalAmount())));
     }
