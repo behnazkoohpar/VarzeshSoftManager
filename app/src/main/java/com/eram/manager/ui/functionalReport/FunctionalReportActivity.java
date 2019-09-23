@@ -98,7 +98,6 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
         try {
             mFunctionalReportViewModel.getOrganizatonUnit();
             mFunctionalReportViewModel.getOrganizationUnitResponseModelMutableLiveData().observe(this, this::receivedOrganizationUnit);
-
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(FunctionalReportActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -110,9 +109,8 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
             if (organizationUnit.isStatus()) {
                 this.organizationUnit = organizationUnit;
                 this.organizationUnit.getResult().add(organizationUnit.getResult().size(), new OrganizationUnit.Result("", "همه"));
-                callGetCreditorAmountToday();
-                callGetSumPriceCreditorToday();
             }
+            callGetCreditorAmountToday();
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(FunctionalReportActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -149,20 +147,15 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 if (timeDateSelected.equalsIgnoreCase("1")) {
                     if (mActivityFunctionalReportBinding.date.getText().toString().equalsIgnoreCase(currentDay)) {
                         callGetCreditorAmountToday();
-                        callGetSumPriceCreditorToday();
                     } else {
                         callGetCreditorAmountLimit();
-                        callGetSumPriceCreditor();
                     }
                 } else if (timeDateSelected.equalsIgnoreCase("2")) {
                     callGetCreditorAmountLimit();
-                    callGetSumPriceCreditor();
                 } else if (timeDateSelected.equalsIgnoreCase("3")) {
                     callGetCreditorAmountLimit();
-                    callGetSumPriceCreditor();
                 } else if (timeDateSelected.equalsIgnoreCase("4")) {
                     callGetCreditorAmountLimit();
-                    callGetSumPriceCreditor();
                 }
             }
         });
@@ -229,10 +222,8 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 mActivityFunctionalReportBinding.time.setText("روزانه");
                 if (mActivityFunctionalReportBinding.date.getText().toString().equalsIgnoreCase(currentDay)) {
                     callGetCreditorAmountToday();
-                    callGetSumPriceCreditorToday();
                 } else {
                     callGetCreditorAmountLimit();
-                    callGetSumPriceCreditor();
                 }
                 dialogTime.dismiss();
             }
@@ -248,10 +239,8 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 mActivityFunctionalReportBinding.time.setText("روزانه");
                 if (mActivityFunctionalReportBinding.date.getText().toString().equalsIgnoreCase(currentDay)) {
                     callGetCreditorAmountToday();
-                    callGetSumPriceCreditorToday();
                 } else {
                     callGetCreditorAmountLimit();
-                    callGetSumPriceCreditor();
                 }
                 dialogTime.dismiss();
             }
@@ -266,7 +255,6 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 timeDateSelected = "2";
                 mActivityFunctionalReportBinding.time.setText("هفتگی");
                 callGetCreditorAmountLimit();
-                callGetSumPriceCreditor();
                 dialogTime.dismiss();
             }
         });
@@ -280,7 +268,6 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 timeDateSelected = "2";
                 mActivityFunctionalReportBinding.time.setText("هفتگی");
                 callGetCreditorAmountLimit();
-                callGetSumPriceCreditor();
                 dialogTime.dismiss();
             }
         });
@@ -294,7 +281,6 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 timeDateSelected = "3";
                 mActivityFunctionalReportBinding.time.setText("ماهانه");
                 callGetCreditorAmountLimit();
-                callGetSumPriceCreditor();
                 dialogTime.dismiss();
             }
         });
@@ -308,7 +294,6 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 timeDateSelected = "3";
                 mActivityFunctionalReportBinding.time.setText("ماهانه");
                 callGetCreditorAmountLimit();
-                callGetSumPriceCreditor();
                 dialogTime.dismiss();
             }
         });
@@ -322,7 +307,6 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 timeDateSelected = "4";
                 mActivityFunctionalReportBinding.time.setText("سالانه");
                 callGetCreditorAmountLimit();
-                callGetSumPriceCreditor();
                 dialogTime.dismiss();
             }
         });
@@ -336,7 +320,6 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
                 timeDateSelected = "4";
                 mActivityFunctionalReportBinding.time.setText("سالانه");
                 callGetCreditorAmountLimit();
-                callGetSumPriceCreditor();
                 dialogTime.dismiss();
             }
         });
@@ -354,23 +337,18 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneDayNext(mActivityFunctionalReportBinding.date.getText().toString()));
             if (mActivityFunctionalReportBinding.date.getText().toString().equalsIgnoreCase(currentDay)) {
                 callGetCreditorAmountToday();
-                callGetSumPriceCreditorToday();
             } else {
                 callGetCreditorAmountLimit();
-                callGetSumPriceCreditor();
             }
         } else if (timeDateSelected.equalsIgnoreCase("2")) {
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneWeekNext(mActivityFunctionalReportBinding.date.getText().toString()));
             callGetCreditorAmountLimit();
-            callGetSumPriceCreditor();
         } else if (timeDateSelected.equalsIgnoreCase("3")) {
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneMonthNext(mActivityFunctionalReportBinding.date.getText().toString(), "01"));
             callGetCreditorAmountLimit();
-            callGetSumPriceCreditor();
         } else if (timeDateSelected.equalsIgnoreCase("4")) {
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneYearNext(mActivityFunctionalReportBinding.date.getText().toString(), "/01/01"));
             callGetCreditorAmountLimit();
-            callGetSumPriceCreditor();
         }
     }
 
@@ -381,23 +359,18 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneDayBefor(mActivityFunctionalReportBinding.date.getText().toString()));
             if (mActivityFunctionalReportBinding.date.getText().toString().equalsIgnoreCase(currentDay)) {
                 callGetCreditorAmountToday();
-                callGetSumPriceCreditorToday();
             } else {
                 callGetCreditorAmountLimit();
-                callGetSumPriceCreditor();
             }
         } else if (timeDateSelected.equalsIgnoreCase("2")) {
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneWeekBefor(mActivityFunctionalReportBinding.date.getText().toString()));
             callGetCreditorAmountLimit();
-            callGetSumPriceCreditor();
         } else if (timeDateSelected.equalsIgnoreCase("3")) {
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneMonthBefor(mActivityFunctionalReportBinding.date.getText().toString(), "01"));
             callGetCreditorAmountLimit();
-            callGetSumPriceCreditor();
         } else if (timeDateSelected.equalsIgnoreCase("4")) {
             mActivityFunctionalReportBinding.date.setText(DateUtil.OneYearBefor(mActivityFunctionalReportBinding.date.getText().toString(), "/01/01"));
             callGetCreditorAmountLimit();
-            callGetSumPriceCreditor();
         }
     }
 
@@ -422,6 +395,7 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
         } else {
             CommonUtils.showSingleButtonAlert(FunctionalReportActivity.this, getString(R.string.text_attention), creditorAmount.getErrmessage(), null, null);
         }
+        callGetSumPriceCreditorToday();
     }
 
     private void callGetCreditorAmountLimit() {
@@ -462,6 +436,7 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
         } else {
             CommonUtils.showSingleButtonAlert(FunctionalReportActivity.this, getString(R.string.text_attention), creditorAmount.getErrmessage(), null, null);
         }
+        callGetSumPriceCreditor();
     }
 
     private void callGetSumPriceCreditor() {
@@ -515,6 +490,7 @@ public class FunctionalReportActivity extends BaseActivity<ActivityFunctionalRep
         mActivityFunctionalReportBinding.before.setEnabled(true);
         if (sumPrice.isStatus())
             mActivityFunctionalReportBinding.sum.setText(NumberFormatter.format(Long.parseLong(sumPrice.getSumTotalAmount())));
+
     }
 
     @Override

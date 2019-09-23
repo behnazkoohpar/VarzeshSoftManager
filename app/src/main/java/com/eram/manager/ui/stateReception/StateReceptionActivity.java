@@ -110,7 +110,6 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
             if (organizationUnit.isStatus()) {
                 this.organizationUnit = organizationUnit;
                 this.organizationUnit.getResult().add(organizationUnit.getResult().size(), new OrganizationUnit.Result("", "همه"));
-                callGetPoolReceptionDay();
                 callGetPoolReceptionStatus();
             }
         } catch (Exception e) {
@@ -457,6 +456,7 @@ public class StateReceptionActivity extends BaseActivity<ActivityStateReceptionB
                 Integer.parseInt(poolReceptionStatus.getAllReceptionedMember_Min_DateTime().substring(5, 7)),
                 Integer.parseInt(poolReceptionStatus.getAllReceptionedMember_Min_DateTime().substring(8, 10)));
         mActivityStateReceptionBinding.movarekh3.setText(i3[0] + "/" + i3[1] + "/" + i3[2]);
+        callGetPoolReceptionDay();
     }
 
     @Override

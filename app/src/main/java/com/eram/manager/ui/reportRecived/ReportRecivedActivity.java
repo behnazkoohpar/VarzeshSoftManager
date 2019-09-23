@@ -65,7 +65,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 dayy = "0" + dayy;
             currentDay = persianCalendar.getPersianYear() + "/" + monthh + "/" + dayy;
             mActivityReportRecivedBinding.date.setText(currentDay);
-
             callOrganizationUnit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,9 +111,10 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
             if (organizationUnit.isStatus()) {
                 this.organizationUnit = organizationUnit;
                 this.organizationUnit.getResult().add(organizationUnit.getResult().size(), new OrganizationUnit.Result("", "همه"));
-                callGetDebtorAmountToday();
-                callGetSumPriceReceipt();
+
             }
+            callGetDebtorAmountToday();
+
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -152,16 +152,16 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                         callGetDebtorAmountToday();
                     else
                         callGetDebtorAmountLimit();
-                    callGetSumPriceReceipt();
+
                 } else if (timeDateSelected.equalsIgnoreCase("2")) {
                     callGetDebtorAmountLimit();
-                    callGetSumPriceReceipt();
+
                 } else if (timeDateSelected.equalsIgnoreCase("3")) {
                     callGetDebtorAmountLimit();
-                    callGetSumPriceReceipt();
+
                 } else if (timeDateSelected.equalsIgnoreCase("4")) {
                     callGetDebtorAmountLimit();
-                    callGetSumPriceReceipt();
+
                 }
             }
         });
@@ -230,7 +230,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                     callGetDebtorAmountToday();
                 else
                     callGetDebtorAmountLimit();
-                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -247,7 +246,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                     callGetDebtorAmountToday();
                 else
                     callGetDebtorAmountLimit();
-                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -261,7 +259,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "2";
                 mActivityReportRecivedBinding.time.setText("هفتگی");
                 callGetDebtorAmountLimit();
-                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -275,7 +272,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "2";
                 mActivityReportRecivedBinding.time.setText("هفتگی");
                 callGetDebtorAmountLimit();
-                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -289,7 +285,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "3";
                 mActivityReportRecivedBinding.time.setText("ماهانه");
                 callGetDebtorAmountLimit();
-                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -303,7 +298,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "3";
                 mActivityReportRecivedBinding.time.setText("ماهانه");
                 callGetDebtorAmountLimit();
-                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -317,7 +311,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "4";
                 mActivityReportRecivedBinding.time.setText("سالانه");
                 callGetDebtorAmountLimit();
-                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -331,7 +324,6 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 timeDateSelected = "4";
                 mActivityReportRecivedBinding.time.setText("سالانه");
                 callGetDebtorAmountLimit();
-                callGetSumPriceReceipt();
                 dialogTime.dismiss();
             }
         });
@@ -350,19 +342,15 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 callGetDebtorAmountToday();
             else
                 callGetDebtorAmountLimit();
-            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("2")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneWeekNext(mActivityReportRecivedBinding.date.getText().toString()));
             callGetDebtorAmountLimit();
-            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("3")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneMonthNext(mActivityReportRecivedBinding.date.getText().toString(), "01"));
             callGetDebtorAmountLimit();
-            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("4")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneYearNext(mActivityReportRecivedBinding.date.getText().toString(), "/01/01"));
             callGetDebtorAmountLimit();
-            callGetSumPriceReceipt();
         }
     }
 
@@ -375,19 +363,15 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
                 callGetDebtorAmountToday();
             else
                 callGetDebtorAmountLimit();
-            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("2")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneWeekBefor(mActivityReportRecivedBinding.date.getText().toString()));
             callGetDebtorAmountLimit();
-            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("3")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneMonthBefor(mActivityReportRecivedBinding.date.getText().toString(), "01"));
             callGetDebtorAmountLimit();
-            callGetSumPriceReceipt();
         } else if (timeDateSelected.equalsIgnoreCase("4")) {
             mActivityReportRecivedBinding.date.setText(DateUtil.OneYearBefor(mActivityReportRecivedBinding.date.getText().toString(), "/01/01"));
             callGetDebtorAmountLimit();
-            callGetSumPriceReceipt();
         }
     }
 
@@ -413,6 +397,7 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
         } else {
             CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), debtorAmount.getErrmessage(), null, null);
         }
+        callGetSumPriceReceipt();
     }
 
     private void callGetDebtorAmountLimit() {
@@ -453,6 +438,7 @@ public class ReportRecivedActivity extends BaseActivity<ActivityReportRecivedBin
         } else {
             CommonUtils.showSingleButtonAlert(ReportRecivedActivity.this, getString(R.string.text_attention), debtorAmount.getErrmessage(), null, null);
         }
+        callGetSumPriceReceipt();
     }
 
     private void callGetSumPriceReceipt() {

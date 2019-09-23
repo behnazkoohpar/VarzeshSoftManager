@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId 'com.eram.manager'
         minSdkVersion 17
@@ -14,6 +13,10 @@ android {
     }
     dataBinding {
         enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -29,10 +32,6 @@ android {
             jcenter()
             maven { url 'https://jitpack.io' }
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
